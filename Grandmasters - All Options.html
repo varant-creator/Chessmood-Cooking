@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Grandmasters — All Options</title>
+<link rel="stylesheet" href="ds/colors_and_type.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+  html, body { margin:0; height:100%; background:#0b0f17; }
+  * { box-sizing: border-box; }
+  .sec { width:100%; height:100%; overflow:hidden; position:relative; font-family:'Plus Jakarta Sans', system-ui, sans-serif; }
+  .eyebrow { font:700 12px/1 'Plus Jakarta Sans'; letter-spacing:.16em; text-transform:uppercase; color:#F57C00; }
+  .orange { color:#F57C00; }
+  img.ph { display:block; width:100%; height:100%; object-fit:cover; object-position:50% 16%; }
+  .nofocus { outline:none; }
+
+  /* =========================================================================
+     A · SINGLE SCROLLABLE ROW (o1–o5) — country on image, data under
+  ========================================================================= */
+  .sec.light { background:#fff; color:#10203A; }
+  .sec.cream { background:#FAFAF7; color:#10203A; }
+  .sec.dark  { background:radial-gradient(120% 80% at 50% 0%, #101b2e 0%, #070c16 64%); color:#fff; }
+
+  .hd { display:flex; align-items:flex-end; justify-content:space-between; gap:40px; padding:60px 64px 30px; }
+  .hd h2 { font:700 40px/1.06 'Plus Jakarta Sans'; letter-spacing:-.03em; margin:14px 0 0; max-width:640px; }
+  .hd .lede { font:400 15px/1.5 Roboto; max-width:300px; }
+  .sec.light .hd .lede, .sec.cream .hd .lede { color:rgba(16,32,58,.58); }
+  .sec.dark  .hd .lede { color:rgba(255,255,255,.6); }
+
+  .arrows { display:flex; gap:10px; flex:0 0 auto; }
+  .arrow { width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font:400 22px/1 system-ui; padding:0; transition:background .15s, border-color .15s; }
+  .sec.light .arrow, .sec.cream .arrow { background:#fff; border:1px solid rgba(16,32,58,.16); color:#10203A; }
+  .sec.light .arrow:hover, .sec.cream .arrow:hover { background:#10203A; border-color:#10203A; color:#fff; }
+  .sec.dark .arrow { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.18); color:#fff; }
+  .sec.dark .arrow:hover { background:rgba(255,255,255,.16); }
+
+  .gstrip { display:flex; gap:20px; overflow-x:auto; padding:6px 64px 26px; scroll-snap-type:x proximity; cursor:grab;
+    -webkit-mask-image:linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
+    mask-image:linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent); }
+  .gstrip.grabbing { cursor:grabbing; }
+  .gstrip > * { scroll-snap-align:start; flex:0 0 auto; }
+  .gstrip::-webkit-scrollbar { height:8px; }
+  .gstrip::-webkit-scrollbar-track { background:transparent; margin:0 64px; }
+  .sec.light .gstrip::-webkit-scrollbar-thumb, .sec.cream .gstrip::-webkit-scrollbar-thumb { background:rgba(16,32,58,.18); border-radius:99px; }
+  .sec.light .gstrip:hover::-webkit-scrollbar-thumb, .sec.cream .gstrip:hover::-webkit-scrollbar-thumb { background:rgba(16,32,58,.32); }
+  .sec.dark  .gstrip::-webkit-scrollbar-thumb { background:rgba(255,255,255,.18); border-radius:99px; }
+  .sec.dark  .gstrip:hover::-webkit-scrollbar-thumb { background:rgba(255,255,255,.34); }
+
+  .gctry { position:absolute; display:flex; align-items:center; gap:6px; padding:5px 10px 5px 8px; border-radius:999px;
+    background:rgba(8,14,24,.52); border:1px solid rgba(255,255,255,.22); backdrop-filter:blur(7px);
+    font:600 11.5px/1 'Plus Jakarta Sans'; color:#fff; }
+  .gctry .flag { font-size:14px; line-height:1; }
+  .founder-pill { position:absolute; padding:4px 10px; border-radius:999px; background:#F57C00; color:#fff;
+    font:700 9.5px/1 'Plus Jakarta Sans'; letter-spacing:.12em; text-transform:uppercase; }
+
+  /* O1 · Index line */
+  .o1 .card { width:236px; }
+  .o1 .pic { position:relative; aspect-ratio:3/4; border-radius:16px; overflow:hidden; background:#e7ecf2; }
+  .o1 .pic img { filter:grayscale(.16); transition:transform .55s cubic-bezier(.2,0,0,1), filter .4s; }
+  .o1 .card:hover .pic img { transform:scale(1.05); filter:grayscale(0); }
+  .o1 .gctry { top:12px; left:12px; }
+  .o1 .founder-pill { top:12px; right:12px; }
+  .o1 .data { padding-top:16px; }
+  .o1 .no-row { display:flex; align-items:center; gap:12px; }
+  .o1 .no { font:800 15px/1 'Schibsted Grotesk'; color:rgba(16,32,58,.32); font-variant-numeric:tabular-nums; letter-spacing:.02em; }
+  .o1 .rule { flex:1; height:1px; background:rgba(16,32,58,.14); }
+  .o1 .nm { font:700 18px/1.2 'Plus Jakarta Sans'; letter-spacing:-.01em; margin-top:10px; }
+  .o1 .fide { font:700 14px/1 'Plus Jakarta Sans'; color:#10203A; margin-top:8px; font-variant-numeric:tabular-nums; }
+  .o1 .fide span { font:600 10px/1 'Plus Jakarta Sans'; letter-spacing:.1em; color:#F57C00; margin-left:5px; }
+
+  /* O2 · Ranking ledger */
+  .o2 .card { width:230px; }
+  .o2 .pic { position:relative; aspect-ratio:3/4; border-radius:14px; overflow:hidden; background:#e7ecf2; }
+  .o2 .pic img { filter:grayscale(.2); transition:transform .55s cubic-bezier(.2,0,0,1), filter .4s; }
+  .o2 .card:hover .pic img { transform:scale(1.05); filter:grayscale(0); }
+  .o2 .gctry { bottom:12px; left:12px; }
+  .o2 .founder-pill { top:12px; left:12px; }
+  .o2 .data { display:flex; align-items:center; gap:14px; padding-top:14px; }
+  .o2 .no { font:800 42px/.85 'Schibsted Grotesk'; color:rgba(16,32,58,.13); font-variant-numeric:tabular-nums; letter-spacing:-.04em; flex:0 0 auto; }
+  .o2 .meta { min-width:0; }
+  .o2 .nm { font:700 16px/1.2 'Plus Jakarta Sans'; letter-spacing:-.01em; }
+  .o2 .fide { display:inline-flex; align-items:baseline; gap:5px; margin-top:7px; padding:4px 9px; border-radius:6px;
+    background:#FEF2E6; font:700 12.5px/1 'Plus Jakarta Sans'; color:#DF7100; font-variant-numeric:tabular-nums; }
+  .o2 .fide span { font:600 9px/1 'Plus Jakarta Sans'; letter-spacing:.1em; color:#F79633; }
+
+  /* O3 · Editorial mono */
+  .o3 .card { width:262px; }
+  .o3 .pic { position:relative; aspect-ratio:4/5; border-radius:4px; overflow:hidden; background:#e7ecf2; }
+  .o3 .pic img { filter:grayscale(1); transition:transform .6s cubic-bezier(.2,0,0,1), filter .5s; }
+  .o3 .card:hover .pic img { transform:scale(1.04); filter:grayscale(0); }
+  .o3 .gctry { top:14px; right:14px; padding:5px 8px; }
+  .o3 .founder-pill { top:14px; left:14px; }
+  .o3 .data { padding-top:18px; }
+  .o3 .no { font:600 11px/1 'Inter'; letter-spacing:.22em; text-transform:uppercase; color:rgba(16,32,58,.42); }
+  .o3 .nm { font:700 20px/1.18 'Plus Jakarta Sans'; letter-spacing:-.02em; margin-top:12px; }
+  .o3 .fide { display:flex; align-items:center; gap:10px; margin-top:14px; font:500 13px/1 Roboto; color:rgba(16,32,58,.55); }
+  .o3 .fide b { font:700 13px/1 'Plus Jakarta Sans'; color:#10203A; font-variant-numeric:tabular-nums; }
+  .o3 .fide .hr { flex:1; height:1px; background:rgba(16,32,58,.12); }
+
+  /* O4 · Dark spotlight */
+  .o4 .card { width:240px; }
+  .o4 .pic { position:relative; aspect-ratio:3/4; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.1);
+    background:linear-gradient(160deg,#1a2840,#0d1525); box-shadow:0 30px 60px -34px rgba(0,0,0,.8); }
+  .o4 .pic img { filter:grayscale(.28) brightness(.96); transition:transform .55s cubic-bezier(.2,0,0,1), filter .45s; }
+  .o4 .card:hover .pic img { transform:scale(1.05); filter:none; }
+  .o4 .gctry { top:12px; left:12px; }
+  .o4 .founder-pill { top:12px; right:12px; }
+  .o4 .data { display:flex; align-items:center; gap:13px; padding-top:16px; }
+  .o4 .no { flex:0 0 auto; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    border:1px solid rgba(255,255,255,.22); font:700 13px/1 'Plus Jakarta Sans'; color:rgba(255,255,255,.82); font-variant-numeric:tabular-nums; }
+  .o4 .meta { min-width:0; }
+  .o4 .nm { font:700 16px/1.2 'Plus Jakarta Sans'; color:#fff; letter-spacing:-.01em; }
+  .o4 .fide { font:600 12.5px/1 'Plus Jakarta Sans'; margin-top:6px; color:#F8A754; font-variant-numeric:tabular-nums; }
+  .o4 .fide span { color:rgba(255,255,255,.45); font-weight:500; margin-left:5px; letter-spacing:.06em; }
+
+  /* O5 · Stat bar */
+  .o5 .card { width:244px; background:#fff; border:1px solid rgba(16,32,58,.1); border-radius:16px; overflow:hidden;
+    box-shadow:0 1px 3px rgba(16,24,40,.05); transition:box-shadow .3s, transform .3s; }
+  .o5 .card:hover { box-shadow:0 20px 44px -22px rgba(16,24,40,.28); transform:translateY(-3px); }
+  .o5 .pic { position:relative; aspect-ratio:1/1; overflow:hidden; background:#e7ecf2; }
+  .o5 .pic img { transition:transform .55s cubic-bezier(.2,0,0,1); }
+  .o5 .card:hover .pic img { transform:scale(1.06); }
+  .o5 .gctry { bottom:12px; left:12px; }
+  .o5 .founder-pill { top:12px; left:12px; }
+  .o5 .nm { font:700 16px/1.25 'Plus Jakarta Sans'; letter-spacing:-.01em; padding:16px 16px 14px; }
+  .o5 .bar { display:flex; align-items:stretch; border-top:1px solid rgba(16,32,58,.1); }
+  .o5 .bar .cell { flex:1; padding:12px 14px; }
+  .o5 .bar .cell + .cell { border-left:1px solid rgba(16,32,58,.1); }
+  .o5 .bar .k { font:600 9px/1 'Plus Jakarta Sans'; letter-spacing:.12em; text-transform:uppercase; color:rgba(16,32,58,.4); }
+  .o5 .bar .v { font:700 16px/1 'Plus Jakarta Sans'; color:#10203A; margin-top:6px; font-variant-numeric:tabular-nums; }
+  .o5 .bar .cell.fide .v { color:#DF7100; }
+
+  /* =========================================================================
+     B · PHOTO-FIRST EXPLORATIONS (v1–v7)
+  ========================================================================= */
+  /* V1 · Editorial roster grid (light) */
+  .v1 { background:#fff; color:#10203A; padding:64px 64px 0; }
+  .v1 .top { display:flex; justify-content:space-between; align-items:flex-end; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(16,32,58,.12); }
+  .v1 h2 { font:700 44px/1.05 'Plus Jakarta Sans'; letter-spacing:-.025em; max-width:620px; margin:0; }
+  .v1 .lede { font:400 16px/1.5 Roboto; color:rgba(16,32,58,.6); max-width:300px; }
+  .v1 .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:2px; background:rgba(16,32,58,.08); }
+  .v1 .cell { position:relative; aspect-ratio:3/3.5; overflow:hidden; background:#dfe5ec; }
+  .v1 .cell img { filter:grayscale(.18); transition:transform .5s cubic-bezier(.2,0,0,1), filter .4s; }
+  .v1 .cell:hover img { transform:scale(1.045); filter:grayscale(0); }
+  .v1 .cap { position:absolute; left:0; right:0; bottom:0; padding:16px 16px 14px; color:#fff;
+    background:linear-gradient(transparent, rgba(8,14,24,.85)); }
+  .v1 .cap .nm { font:700 16px/1.15 'Plus Jakarta Sans'; }
+  .v1 .cap .rl { font:500 12px/1.3 Roboto; color:rgba(255,255,255,.72); margin-top:3px; }
+  .v1 .fide { position:absolute; top:12px; right:12px; font:700 11px/1 'Plus Jakarta Sans'; letter-spacing:.04em;
+    color:#fff; background:rgba(8,14,24,.45); border:1px solid rgba(255,255,255,.25); padding:5px 8px; border-radius:4px; backdrop-filter:blur(4px); }
+  .v1 .founder-tag { position:absolute; top:12px; left:12px; font:700 10px/1 'Plus Jakarta Sans'; letter-spacing:.1em; text-transform:uppercase;
+    color:#fff; background:#F57C00; padding:5px 8px; border-radius:4px; }
+
+  /* V2 · Founder spotlight + rail (dark) */
+  .v2 { background:radial-gradient(120% 100% at 12% 0%, #16243a, #0a1019 70%); color:#fff; padding:60px 0 56px 64px; display:flex; gap:48px; }
+  .v2 .left { width:430px; flex:0 0 430px; padding-top:18px; }
+  .v2 .eyebrow { color:#7FB0E6; }
+  .v2 h2 { font:700 40px/1.08 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:18px 0 0; }
+  .v2 .founder { margin-top:32px; position:relative; border-radius:14px; overflow:hidden; height:430px; }
+  .v2 .founder img { object-position:50% 12%; }
+  .v2 .founder .grad { position:absolute; inset:0; background:linear-gradient(transparent 45%, rgba(7,11,21,.92)); }
+  .v2 .founder .info { position:absolute; left:24px; right:24px; bottom:22px; }
+  .v2 .founder .q { font:500 19px/1.4 'Plus Jakarta Sans'; letter-spacing:-.01em; }
+  .v2 .founder .by { margin-top:14px; font:700 16px/1.2 'Plus Jakarta Sans'; }
+  .v2 .founder .meta { font:500 13px/1.3 Roboto; color:rgba(255,255,255,.6); margin-top:3px; }
+  .v2 .right { flex:1; overflow:hidden; padding-top:18px; }
+  .v2 .rlabel { font:600 13px/1 Roboto; color:rgba(255,255,255,.5); margin-bottom:16px; display:flex; justify-content:space-between; padding-right:64px; }
+  .v2 .rail { display:flex; gap:16px; }
+  .v2 .gmcard { flex:0 0 192px; }
+  .v2 .gmcard .pic { height:248px; border-radius:12px; overflow:hidden; position:relative; }
+  .v2 .gmcard .pic img { filter:grayscale(.25); transition:filter .4s; }
+  .v2 .gmcard:hover .pic img { filter:none; }
+  .v2 .gmcard .rt { position:absolute; top:10px; right:10px; font:700 11px/1 'Plus Jakarta Sans'; color:#fff; background:rgba(7,11,21,.5); border:1px solid rgba(255,255,255,.2); padding:4px 7px; border-radius:4px; }
+  .v2 .gmcard .nm { font:700 15px/1.2 'Plus Jakarta Sans'; margin-top:12px; }
+  .v2 .gmcard .rl { font:500 12px/1.3 Roboto; color:rgba(255,255,255,.55); margin-top:3px; }
+
+  /* V3 · Cinematic portrait marquee (dark, full-bleed) */
+  .v3 { background:#080c14; color:#fff; padding:0; display:flex; flex-direction:column; }
+  .v3 .head { padding:56px 64px 30px; text-align:center; }
+  .v3 .eyebrow { color:#F57C00; }
+  .v3 h2 { font:700 42px/1.06 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:14px auto 0; max-width:780px; }
+  .v3 .strip { flex:1; display:flex; gap:0; min-height:0; }
+  .v3 .col { position:relative; flex:1; overflow:hidden; filter:grayscale(.4) brightness(.85); transition:flex .55s cubic-bezier(.2,0,0,1), filter .5s; }
+  .v3 .col img { object-position:50% 16%; }
+  .v3 .strip:hover .col { flex:.6; }
+  .v3 .col:hover { flex:2.4; filter:none; }
+  .v3 .col .grad { position:absolute; inset:0; background:linear-gradient(transparent 55%, rgba(6,10,18,.92)); }
+  .v3 .col .info { position:absolute; left:18px; right:18px; bottom:20px; }
+  .v3 .col .nm { font:700 18px/1.1 'Plus Jakarta Sans'; letter-spacing:-.01em; }
+  .v3 .col .nm span { display:block; }
+  .v3 .col .ctry { display:flex; align-items:center; gap:7px; margin-top:9px; font:600 13px/1 'Plus Jakarta Sans'; color:#fff; }
+  .v3 .col .ctry .flag { font-size:15px; line-height:1; }
+  .v3 .col .rl { font:500 12px/1.3 Roboto; color:rgba(255,255,255,.66); margin-top:6px; opacity:0; max-height:0; overflow:hidden; transition:opacity .4s, max-height .4s; }
+  .v3 .col:hover .rl { opacity:1; max-height:40px; }
+  .v3 .col .fide { position:absolute; top:16px; left:18px; font:700 12px/1 'Plus Jakarta Sans'; color:#F8A754; }
+
+  /* V4 · Alternating feature rows (light) */
+  .v4 { background:#F7F8F9; color:#10203A; padding:56px 64px; }
+  .v4 .eyebrow { color:#F57C00; }
+  .v4 h2 { font:700 38px/1.08 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:12px 0 36px; max-width:640px; }
+  .v4 .rows { display:flex; flex-direction:column; gap:18px; }
+  .v4 .row { display:flex; gap:28px; align-items:stretch; background:#fff; border:1px solid rgba(16,32,58,.1); border-radius:16px; overflow:hidden; box-shadow:0 1px 3px rgba(16,24,40,.04); }
+  .v4 .row.rev { flex-direction:row-reverse; }
+  .v4 .row .pic { flex:0 0 240px; position:relative; overflow:hidden; }
+  .v4 .row .body { flex:1; padding:30px 32px; display:flex; flex-direction:column; justify-content:center; }
+  .v4 .row .q { font:500 21px/1.4 'Plus Jakarta Sans'; letter-spacing:-.01em; }
+  .v4 .row .who { margin-top:18px; display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; }
+  .v4 .row .nm { font:700 18px/1.1 'Plus Jakarta Sans'; }
+  .v4 .row .rl { font:500 13px/1.3 Roboto; color:rgba(16,32,58,.55); }
+  .v4 .row .fide { margin-left:auto; font:700 13px/1 'Plus Jakarta Sans'; color:#F57C00; }
+
+  /* V5 · Bento wall (light, mixed sizes) */
+  .v5 { background:#fff; color:#10203A; padding:56px 64px; }
+  .v5 .top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:28px; }
+  .v5 .eyebrow { color:#F57C00; }
+  .v5 h2 { font:700 40px/1.05 'Plus Jakarta Sans'; letter-spacing:-.025em; max-width:560px; margin:12px 0 0; }
+  .v5 .count { font:700 56px/1 'Schibsted Grotesk'; color:rgba(16,32,58,.12); letter-spacing:-.03em; }
+  .v5 .bento { display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:150px; gap:14px; }
+  .v5 .tile { position:relative; border-radius:14px; overflow:hidden; background:#e7ecf2; }
+  .v5 .tile.big { grid-column:span 2; grid-row:span 2; }
+  .v5 .tile.tall { grid-row:span 2; }
+  .v5 .tile img { transition:transform .5s; }
+  .v5 .tile:hover img { transform:scale(1.05); }
+  .v5 .tile .lab { position:absolute; left:0; right:0; bottom:0; padding:14px; color:#fff; background:linear-gradient(transparent, rgba(8,14,24,.82)); }
+  .v5 .tile .nm { font:700 15px/1.1 'Plus Jakarta Sans'; }
+  .v5 .tile.big .nm { font-size:22px; }
+  .v5 .tile .rl { font:500 11.5px/1.3 Roboto; color:rgba(255,255,255,.72); margin-top:3px; }
+  .v5 .tile .fide { position:absolute; top:11px; right:11px; font:700 10.5px/1 'Plus Jakarta Sans'; color:#fff; background:rgba(8,14,24,.4); border:1px solid rgba(255,255,255,.22); padding:4px 6px; border-radius:4px; }
+
+  /* V7 · Photos side by side, data under image (light) */
+  .v7 { background:#fff; color:#10203A; padding:56px 64px; }
+  .v7 .top { display:flex; justify-content:space-between; align-items:flex-end; gap:40px; margin-bottom:36px; }
+  .v7 .eyebrow { color:#F57C00; }
+  .v7 h2 { font:700 40px/1.06 'Plus Jakarta Sans'; letter-spacing:-.025em; max-width:600px; margin:14px 0 0; }
+  .v7 .lede { font:400 15px/1.55 Roboto; color:rgba(16,32,58,.6); max-width:260px; text-align:right; }
+  .v7 .row { display:grid; grid-template-columns:repeat(6,1fr); gap:24px; }
+  .v7 .card { display:flex; flex-direction:column; }
+  .v7 .pic { position:relative; aspect-ratio:3/3.6; border-radius:12px; overflow:hidden; background:#e7ecf2; }
+  .v7 .pic img { filter:grayscale(.2); transition:transform .5s cubic-bezier(.2,0,0,1), filter .4s; }
+  .v7 .card:hover .pic img { transform:scale(1.05); filter:grayscale(0); }
+  .v7 .founder-tag { position:absolute; top:10px; left:10px; font:700 9.5px/1 'Plus Jakarta Sans'; letter-spacing:.1em; text-transform:uppercase;
+    color:#fff; background:#F57C00; padding:5px 7px; border-radius:4px; }
+  .v7 .data { padding-top:14px; }
+  .v7 .nm { font:700 16px/1.2 'Plus Jakarta Sans'; letter-spacing:-.01em; }
+  .v7 .rl { font:500 12.5px/1.35 Roboto; color:rgba(16,32,58,.6); margin-top:4px; }
+  .v7 .meta { display:flex; align-items:center; justify-content:space-between; margin-top:12px; padding-top:11px; border-top:1px solid rgba(16,32,58,.1); }
+  .v7 .ctry { font:500 12px/1 Roboto; color:rgba(16,32,58,.5); }
+  .v7 .fide { font:700 14px/1 'Plus Jakarta Sans'; color:#10203A; font-variant-numeric:tabular-nums; }
+  .v7 .fide span { font:500 9.5px/1 Roboto; color:rgba(16,32,58,.4); letter-spacing:.08em; text-transform:uppercase; margin-left:4px; }
+
+  /* V6 · Numbered index (dark, typographic) */
+  .v6 { background:#0b1019; color:#fff; padding:58px 64px; }
+  .v6 .eyebrow { color:#7FB0E6; }
+  .v6 h2 { font:700 40px/1.06 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:14px 0 34px; max-width:640px; }
+  .v6 .list { display:flex; flex-direction:column; }
+  .v6 .item { display:flex; align-items:center; gap:26px; padding:16px 8px; border-top:1px solid rgba(255,255,255,.1); transition:background .25s, padding .25s; cursor:default; }
+  .v6 .item:last-child { border-bottom:1px solid rgba(255,255,255,.1); }
+  .v6 .item:hover { background:rgba(255,255,255,.04); padding-left:18px; }
+  .v6 .no { font:800 22px/1 'Schibsted Grotesk'; color:rgba(255,255,255,.28); width:46px; font-variant-numeric:tabular-nums; }
+  .v6 .av { width:56px; height:56px; border-radius:50%; overflow:hidden; flex:0 0 56px; filter:grayscale(.3); transition:filter .35s; }
+  .v6 .item:hover .av { filter:none; }
+  .v6 .av img { object-position:50% 18%; }
+  .v6 .nm { font:700 22px/1.1 'Plus Jakarta Sans'; letter-spacing:-.01em; flex:0 0 280px; }
+  .v6 .rl { font:500 14px/1.3 Roboto; color:rgba(255,255,255,.55); flex:1; }
+  .v6 .ctry { font:500 13px/1.3 Roboto; color:rgba(255,255,255,.4); width:120px; text-align:right; }
+  .v6 .fide { font:700 16px/1 'Plus Jakarta Sans'; color:#F8A754; width:72px; text-align:right; font-variant-numeric:tabular-nums; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel">
+const { useRef } = React;
+
+// — Real ChessMood photography + plausible credentials —
+const GM = {
+  avetik:{n:"GM Avetik Grigoryan", r:"Founder & Head Coach", c:"Armenia", f:2580, img:"ds/photo-avetik.webp"},
+  gabuzyan:{n:"GM Hovhannes Gabuzyan", r:"Attack & Calculation", c:"Armenia", f:2620, img:"ds/photo-gabuzyan.webp"},
+  avrukh:{n:"GM Boris Avrukh", r:"Opening Theory", c:"Israel", f:2657, img:"ds/photo-avrukh.webp"},
+  leitao:{n:"GM Rafael Leitão", r:"Practical Play", c:"Brazil", f:2659, img:"ds/photo-leitao.jpg"},
+  melkumyan:{n:"GM Hrant Melkumyan", r:"Dynamic Strategy", c:"Armenia", f:2660, img:"ds/photo-melkumyan.jpg"},
+  fressinet:{n:"GM Laurent Fressinet", r:"Endgames", c:"France", f:2660, img:"ds/photo-fressinet.jpg"},
+  grandelius:{n:"GM Nils Grandelius", r:"Sharp Openings", c:"Sweden", f:2670, img:"ds/photo-grandelius.jpg"},
+  akobian:{n:"GM Varuzhan Akobian", r:"Positional Play", c:"USA", f:2620, img:"ds/photo-akobian.jpg"},
+  andriasian:{n:"GM Zaven Andriasian", r:"Repertoire Design", c:"Armenia", f:2610, img:"ds/photo-andriasian.jpg"},
+  paehtz:{n:"GM Elisabeth Pähtz", r:"Attacking Chess", c:"Germany", f:2480, img:"ds/photo-paehtz.jpg"},
+  studer:{n:"GM Noël Studer", r:"Study Method", c:"Switzerland", f:2570, img:"ds/photo-studer.jpg"},
+  hovhannisyan:{n:"GM Robert Hovhannisyan", r:"Calculation", c:"Armenia", f:2620, img:"ds/photo-hovhannisyan.jpg"},
+  kuljasevic:{n:"GM Davorin Kuljašević", r:"Decision Making", c:"Croatia", f:2570, img:"ds/photo-kuljasevic.png"},
+  banusz:{n:"GM Tamás Bánusz", r:"Middlegames", c:"Hungary", f:2590, img:"ds/photo-banusz.jpg"},
+  cuenca:{n:"GM Jose Cuenca", r:"Tactics", c:"Spain", f:2550, img:"ds/photo-cuenca.jpg"},
+  amin:{n:"GM Bassem Amin", r:"Classical Play", c:"Egypt", f:2700, img:"ds/photo-amin.jpg"},
+};
+const ROSTER = Object.values(GM);
+const Q = {
+  avetik:"I built ChessMood to give players the structured path I wish I had at 1500.",
+  gabuzyan:"Sharp positions reward the player who calculates one move deeper — let me show you how.",
+  avrukh:"A great repertoire removes the guesswork — you enter every game already prepared.",
+  leitao:"Knowing the idea means nothing until you can find it on the clock.",
+};
+const Img = ({src, pos}) => <img className="ph" src={src} alt="" style={pos?{objectPosition:pos}:null} />;
+const FLAG = { Armenia:'🇦🇲', Israel:'🇮🇱', Brazil:'🇧🇷', France:'🇫🇷', Sweden:'🇸🇪', USA:'🇺🇸', Germany:'🇩🇪', Switzerland:'🇨🇭', Croatia:'🇭🇷', Hungary:'🇭🇺', Spain:'🇪🇸', Egypt:'🇪🇬' };
+const splitName = (n) => { const s = n.replace('GM ',''); const i = s.indexOf(' '); return i<0 ? [s] : [s.slice(0,i), s.slice(i+1)]; };
+
+// ===== A · Scrollable single row data + shell =====
+const SROSTER = [
+  { n:'GM Avetik Grigoryan',     c:'Armenia',     flag:'🇦🇲', f:2602, founder:true, img:'ds/photo-avetik.png' },
+  { n:'GM Nils Grandelius',      c:'Sweden',      flag:'🇸🇪', f:2723, img:'ds/photo-grandelius.jpg' },
+  { n:'GM Laurent Fressinet',    c:'France',      flag:'🇫🇷', f:2718, img:'ds/photo-fressinet.jpg' },
+  { n:'GM Bassem Amin',          c:'Egypt',       flag:'🇪🇬', f:2709, img:'ds/photo-amin.jpg' },
+  { n:'GM Hrant Melkumyan',      c:'Armenia',     flag:'🇦🇲', f:2695, img:'ds/photo-melkumyan.jpg' },
+  { n:'GM Varuzhan Akobian',     c:'USA',         flag:'🇺🇸', f:2671, img:'ds/photo-akobian.jpg' },
+  { n:'GM Robert Hovhannisyan',  c:'Armenia',     flag:'🇦🇲', f:2661, img:'ds/photo-hovhannisyan.jpg' },
+  { n:'GM Rafael Leitão',        c:'Brazil',      flag:'🇧🇷', f:2659, img:'ds/photo-leitao.jpg' },
+  { n:'GM Noël Studer',          c:'Switzerland', flag:'🇨🇭', f:2658, img:'ds/photo-studer.jpg' },
+  { n:'GM Hovhannes Gabuzyan',   c:'Armenia',     flag:'🇦🇲', f:2658, img:'ds/photo-gabuzyan.webp' },
+  { n:'GM Boris Avrukh',         c:'Israel',      flag:'🇮🇱', f:2657, img:'ds/photo-avrukh.webp' },
+  { n:'GM Pepe Cuenca',          c:'Spain',       flag:'🇪🇸', f:2654, img:'ds/photo-cuenca.jpg' },
+  { n:'GM Zaven Andriasian',     c:'Armenia',     flag:'🇦🇲', f:2642, img:'ds/photo-andriasian.jpg' },
+  { n:'GM Tamas Banusz',         c:'Hungary',     flag:'🇭🇺', f:2638, img:'ds/photo-banusz.jpg' },
+  { n:'GM Davorin Kuljasevic',   c:'Croatia',     flag:'🇭🇷', f:2607, img:'ds/photo-kuljasevic.png' },
+  { n:'GM Elisabeth Pähtz',      c:'Germany',     flag:'🇩🇪', f:2526, img:'ds/photo-paehtz.jpg' },
+];
+const short = (n) => n.replace('GM ','');
+const Country = ({m}) => <div className="gctry"><span className="flag">{m.flag}</span>{m.c}</div>;
+
+function Section({ theme='light', opt, title, lede, children }){
+  const ref = useRef(null);
+  const drag = useRef({down:false, x:0, l:0});
+  const nudge = (d) => ref.current && ref.current.scrollBy({ left:d, behavior:'smooth' });
+  const onDown = (e) => { const el=ref.current; drag.current={down:true,x:e.pageX,l:el.scrollLeft}; el.classList.add('grabbing'); };
+  const onMove = (e) => { if(!drag.current.down) return; ref.current.scrollLeft = drag.current.l - (e.pageX - drag.current.x); };
+  const onUp = () => { drag.current.down=false; ref.current && ref.current.classList.remove('grabbing'); };
+  return (
+    <section className={"sec "+theme+" "+opt}>
+      <div className="hd">
+        <div>
+          <div className="eyebrow">Guided by Grandmasters</div>
+          <h2>{title}</h2>
+        </div>
+        <div style={{display:'flex', flexDirection:'column', alignItems:'flex-end', gap:18}}>
+          {lede && <div className="lede">{lede}</div>}
+          <div className="arrows">
+            <button className="arrow" aria-label="Scroll left" onClick={()=>nudge(-560)}>‹</button>
+            <button className="arrow" aria-label="Scroll right" onClick={()=>nudge(560)}>›</button>
+          </div>
+        </div>
+      </div>
+      <div className="gstrip" ref={ref}
+        onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerLeave={onUp}>
+        {children}
+      </div>
+    </section>
+  );
+}
+
+const HEADING = 'The Grandmasters you will meet in the ChessMood system.';
+const LEDE = 'Every course, repertoire and review is built by a titled Grandmaster — not a marketer.';
+
+/* O1 — Index line */
+function O1(){
+  return <Section opt="o1" theme="light" title={HEADING} lede={LEDE}>
+    {SROSTER.map((m,i)=><div className="card" key={i}>
+      <div className="pic"><Img src={m.img}/><Country m={m}/>{m.founder && <div className="founder-pill">Founder</div>}</div>
+      <div className="data">
+        <div className="no-row"><span className="no">{String(i+1).padStart(2,'0')}</span><span className="rule"></span></div>
+        <div className="nm">{short(m.n)}</div>
+        <div className="fide">{m.f}<span>FIDE</span></div>
+      </div>
+    </div>)}
+  </Section>;
+}
+
+/* O2 — Ranking ledger */
+function O2(){
+  return <Section opt="o2" theme="light" title={HEADING} lede={LEDE}>
+    {SROSTER.map((m,i)=><div className="card" key={i}>
+      <div className="pic"><Img src={m.img}/><Country m={m}/>{m.founder && <div className="founder-pill">Founder</div>}</div>
+      <div className="data">
+        <span className="no">{String(i+1).padStart(2,'0')}</span>
+        <div className="meta">
+          <div className="nm">{short(m.n)}</div>
+          <span className="fide">{m.f}<span>FIDE</span></span>
+        </div>
+      </div>
+    </div>)}
+  </Section>;
+}
+
+/* O3 — Editorial mono */
+function O3(){
+  return <Section opt="o3" theme="light" title={HEADING} lede={LEDE}>
+    {SROSTER.map((m,i)=><div className="card" key={i}>
+      <div className="pic"><Img src={m.img}/><Country m={m}/>{m.founder && <div className="founder-pill">Founder</div>}</div>
+      <div className="data">
+        <div className="no">No. {String(i+1).padStart(2,'0')}</div>
+        <div className="nm">{short(m.n)}</div>
+        <div className="fide"><b>{m.f}</b> FIDE <span className="hr"></span></div>
+      </div>
+    </div>)}
+  </Section>;
+}
+
+/* O4 — Dark spotlight */
+function O4(){
+  return <Section opt="o4" theme="dark" title={HEADING} lede={LEDE}>
+    {SROSTER.map((m,i)=><div className="card" key={i}>
+      <div className="pic"><Img src={m.img}/><Country m={m}/>{m.founder && <div className="founder-pill">Founder</div>}</div>
+      <div className="data">
+        <span className="no">{String(i+1).padStart(2,'0')}</span>
+        <div className="meta">
+          <div className="nm">{short(m.n)}</div>
+          <div className="fide">{m.f}<span>FIDE</span></div>
+        </div>
+      </div>
+    </div>)}
+  </Section>;
+}
+
+/* O5 — Stat bar */
+function O5(){
+  return <Section opt="o5" theme="light" title={HEADING} lede={LEDE}>
+    {SROSTER.map((m,i)=><div className="card" key={i}>
+      <div className="pic"><Img src={m.img}/><Country m={m}/>{m.founder && <div className="founder-pill">Founder</div>}</div>
+      <div className="nm">{short(m.n)}</div>
+      <div className="bar">
+        <div className="cell"><div className="k">No.</div><div className="v">{String(i+1).padStart(2,'0')}</div></div>
+        <div className="cell fide"><div className="k">FIDE</div><div className="v">{m.f}</div></div>
+      </div>
+    </div>)}
+  </Section>;
+}
+
+// ===== B · Photo-first explorations =====
+/* V1 */
+function V1(){
+  const g = ROSTER.slice(0,8);
+  return <div className="sec v1">
+    <div className="top">
+      <div><div className="eyebrow orange">Guided by Grandmasters</div>
+      <h2 style={{marginTop:14}}>The Grandmasters you will meet in the ChessMood system.</h2></div>
+      <div className="lede">Every course, repertoire and review is built by a titled Grandmaster — not a marketer.</div>
+    </div>
+    <div className="grid">
+      {g.map((m,i)=><div className="cell" key={i}>
+        <Img src={m.img}/>
+        {i===0 && <div className="founder-tag">Founder</div>}
+        <div className="fide">{m.f}</div>
+        <div className="cap"><div className="nm">{m.n.replace('GM ','')}</div><div className="rl">{m.r} · {m.c}</div></div>
+      </div>)}
+    </div>
+  </div>;
+}
+
+/* V2 */
+function V2(){
+  const rail = [GM.gabuzyan,GM.avrukh,GM.leitao,GM.melkumyan,GM.grandelius,GM.fressinet,GM.akobian];
+  return <div className="sec v2">
+    <div className="left">
+      <div className="eyebrow">Meet your coaches</div>
+      <h2>The Grandmasters you’ll learn from, up close.</h2>
+      <div className="founder">
+        <Img src={GM.avetik.img} pos="50% 12%"/>
+        <div className="grad"></div>
+        <div className="info">
+          <div className="q">“{Q.avetik}”</div>
+          <div className="by">{GM.avetik.n}</div>
+          <div className="meta">{GM.avetik.r} · {GM.avetik.c} · {GM.avetik.f} FIDE</div>
+        </div>
+      </div>
+    </div>
+    <div className="right">
+      <div className="rlabel"><span>The teaching team</span><span>16 Grandmasters →</span></div>
+      <div className="rail">
+        {rail.map((m,i)=><div className="gmcard" key={i}>
+          <div className="pic"><Img src={m.img}/><div className="rt">{m.f}</div></div>
+          <div className="nm">{m.n.replace('GM ','')}</div><div className="rl">{m.r} · {m.c}</div>
+        </div>)}
+      </div>
+    </div>
+  </div>;
+}
+
+/* V3 */
+function V3(){
+  const g = [GM.avetik,GM.gabuzyan,GM.grandelius,GM.leitao,GM.avrukh,GM.melkumyan,GM.fressinet];
+  return <div className="sec v3">
+    <div className="head">
+      <div className="eyebrow">Guided by Grandmasters</div>
+      <h2>The Grandmasters you will meet in the ChessMood system.</h2>
+    </div>
+    <div className="strip">
+      {g.map((m,i)=><div className="col" key={i}>
+        <Img src={m.img} pos="50% 16%"/>
+        <div className="grad"></div>
+        <div className="fide">{m.f}</div>
+        <div className="info">
+          <div className="nm">{splitName(m.n).map((p,j)=><span key={j}>{p}</span>)}</div>
+          <div className="ctry"><span className="flag">{FLAG[m.c]}</span>{m.c}</div>
+          <div className="rl">{m.r}</div>
+        </div>
+      </div>)}
+    </div>
+  </div>;
+}
+
+/* V4 */
+function V4(){
+  const feats = [["avetik",Q.avetik],["gabuzyan",Q.gabuzyan],["avrukh",Q.avrukh],["leitao",Q.leitao]];
+  return <div className="sec v4">
+    <div className="eyebrow">Guided by Grandmasters</div>
+    <h2>Four of the sixteen Grandmasters behind your plan.</h2>
+    <div className="rows">
+      {feats.map(([k,q],i)=>{const m=GM[k];return <div className={"row"+(i%2?" rev":"")} key={i}>
+        <div className="pic"><Img src={m.img}/></div>
+        <div className="body">
+          <div className="q">“{q}”</div>
+          <div className="who"><span className="nm">{m.n}</span><span className="rl">{m.r} · {m.c}</span><span className="fide">{m.f} FIDE</span></div>
+        </div>
+      </div>;})}
+    </div>
+  </div>;
+}
+
+/* V5 */
+function V5(){
+  const tiles=[
+    {m:GM.avetik,cls:"big"},{m:GM.gabuzyan,cls:"tall"},{m:GM.avrukh,cls:""},
+    {m:GM.leitao,cls:""},{m:GM.grandelius,cls:""},{m:GM.melkumyan,cls:"tall"},
+    {m:GM.fressinet,cls:""},{m:GM.akobian,cls:""},{m:GM.andriasian,cls:""},
+  ];
+  return <div className="sec v5">
+    <div className="top">
+      <div><div className="eyebrow">Guided by Grandmasters</div>
+      <h2>The Grandmasters you will meet in the ChessMood system.</h2></div>
+      <div className="count">16</div>
+    </div>
+    <div className="bento">
+      {tiles.map((t,i)=><div className={"tile "+t.cls} key={i}>
+        <Img src={t.m.img}/>
+        <div className="fide">{t.m.f}</div>
+        <div className="lab"><div className="nm">{t.m.n.replace('GM ','')}</div><div className="rl">{t.m.r} · {t.m.c}</div></div>
+      </div>)}
+    </div>
+  </div>;
+}
+
+/* V6 */
+function V6(){
+  const g=[GM.avetik,GM.amin,GM.grandelius,GM.leitao,GM.avrukh,GM.melkumyan,GM.gabuzyan,GM.fressinet];
+  return <div className="sec v6">
+    <div className="eyebrow">Guided by Grandmasters</div>
+    <h2>The lineup you’ll learn from.</h2>
+    <div className="list">
+      {g.map((m,i)=><div className="item" key={i}>
+        <div className="no">{String(i+1).padStart(2,'0')}</div>
+        <div className="av"><Img src={m.img}/></div>
+        <div className="nm">{m.n}</div>
+        <div className="rl">{m.r}</div>
+        <div className="ctry">{m.c}</div>
+        <div className="fide">{m.f}</div>
+      </div>)}
+    </div>
+  </div>;
+}
+
+/* V7 — photos side by side, data under image */
+function V7(){
+  const g = [GM.avetik,GM.amin,GM.melkumyan,GM.fressinet,GM.grandelius,GM.avrukh,
+             GM.gabuzyan,GM.leitao,GM.akobian,GM.andriasian,GM.hovhannisyan,GM.studer];
+  return <div className="sec v7">
+    <div className="top">
+      <div><div className="eyebrow">Guided by Grandmasters</div>
+      <h2>The Grandmasters you will meet in the ChessMood system.</h2></div>
+      <div className="lede">Every course, repertoire and review is built by a titled Grandmaster — not a marketer.</div>
+    </div>
+    <div className="row">
+      {g.map((m,i)=><div className="card" key={i}>
+        <div className="pic">
+          <Img src={m.img}/>
+          {i===0 && <div className="founder-tag">Founder</div>}
+        </div>
+        <div className="data">
+          <div className="nm">{m.n.replace('GM ','')}</div>
+          <div className="rl">{m.r}</div>
+          <div className="meta">
+            <span className="ctry">{m.c}</span>
+            <span className="fide">{m.f}<span>FIDE</span></span>
+          </div>
+        </div>
+      </div>)}
+    </div>
+  </div>;
+}
+
+function AppGM(){
+  return <DesignCanvas>
+    <DCSection id="scroll" title="Meet the Grandmasters — single scrollable row · 5 options" subtitle="Side-by-side portraits · country badge on the photo · number, name & FIDE under it · drag or use ‹ › to scroll">
+      <DCArtboard id="o1" label="01 · Index line" width={1440} height={648}><O1/></DCArtboard>
+      <DCArtboard id="o2" label="02 · Ranking ledger" width={1440} height={640}><O2/></DCArtboard>
+      <DCArtboard id="o3" label="03 · Editorial mono" width={1440} height={712}><O3/></DCArtboard>
+      <DCArtboard id="o4" label="04 · Dark spotlight" width={1440} height={648}><O4/></DCArtboard>
+      <DCArtboard id="o5" label="05 · Stat-bar cards" width={1440} height={640}><O5/></DCArtboard>
+    </DCSection>
+    <DCSection id="photo" title="Meet the Grandmasters — photo-first explorations · 7 directions" subtitle="Earlier directions · real ChessMood portraits · click ⤢ to focus any one">
+      <DCArtboard id="v7" label="07 · Photos side by side · data under image" width={1280} height={620}><V7/></DCArtboard>
+      <DCArtboard id="v1" label="01 · Editorial roster grid" width={1280} height={968}><V1/></DCArtboard>
+      <DCArtboard id="v2" label="02 · Founder spotlight + rail" width={1280} height={724}><V2/></DCArtboard>
+      <DCArtboard id="v3" label="03 · Cinematic portrait marquee" width={1280} height={760}><V3/></DCArtboard>
+      <DCArtboard id="v4" label="04 · Alternating feature rows" width={1280} height={1300}><V4/></DCArtboard>
+      <DCArtboard id="v5" label="05 · Bento portrait wall" width={1280} height={956}><V5/></DCArtboard>
+      <DCArtboard id="v6" label="06 · Numbered index" width={1280} height={956}><V6/></DCArtboard>
+    </DCSection>
+  </DesignCanvas>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<AppGM/>);
+</script>
+</body>
+</html>

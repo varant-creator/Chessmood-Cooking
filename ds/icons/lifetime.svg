@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 636.6 186.9">
+  <defs>
+    
+    <linearGradient id="linear-gradient" x1="22.2" y1="932.28" x2="621.3" y2="932.28" gradientTransform="translate(0 -839.38)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff7123"></stop>
+      <stop offset=".1" stop-color="#fa6f2b"></stop>
+      <stop offset=".25" stop-color="#ed6b43"></stop>
+      <stop offset=".44" stop-color="#d9646a"></stop>
+      <stop offset=".66" stop-color="#bc5aa0"></stop>
+      <stop offset=".91" stop-color="#984de3"></stop>
+      <stop offset="1" stop-color="#8a49ff"></stop>
+      <stop offset="1" stop-color="#8753ff"></stop>
+      <stop offset="1" stop-color="#826fff"></stop>
+      <stop offset="1" stop-color="#799dff"></stop>
+      <stop offset="1" stop-color="#6cdbff"></stop>
+      <stop offset="1" stop-color="#69edff"></stop>
+      <stop offset="1" stop-color="#ff1d8a"></stop>
+    </linearGradient>
+  </defs>
+  <path class="cls-1" d="m105.9,9.2h431.7c46.2,0,83.7,37.5,83.7,83.7h0c0,46.2-37.5,83.7-83.7,83.7H105.9c-46.2,0-83.7-37.5-83.7-83.7h0c0-46.2,37.4-83.7,83.7-83.7Z"></path>
+  <text class="cls-2" transform="translate(98.26 121.47)"><tspan x="0" y="0">LIFETIME</tspan></text>
+</svg>

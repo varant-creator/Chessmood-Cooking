@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Method — All Options</title>
+<link rel="stylesheet" href="ds/colors_and_type.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+  html, body { margin:0; height:100%; background:#0b0f17; }
+  * { box-sizing:border-box; }
+  .sec { width:100%; height:100%; overflow:hidden; position:relative; font-family:'Plus Jakarta Sans', system-ui, sans-serif; }
+  .sec.light { background:#F1F4F8; color:#10203A; }
+  .sec.white { background:#fff; color:#10203A; }
+  .sec.cream { background:#FAFAF7; color:#10203A; }
+  .sec.dark  { background:radial-gradient(120% 80% at 50% -10%, #16243a, #080d16 72%); color:#fff; }
+  .eyebrow { font:700 12px/1 'Plus Jakarta Sans'; letter-spacing:.18em; text-transform:uppercase; color:#F57C00; }
+  .orange { color:#F57C00; }
+
+  /* =========================================================================
+     A · CENTERED STEPS + VIDEO (v1–v5) — title centered, steps under, text 2/5 + video 3/5
+  ========================================================================= */
+  .mhead { text-align:center; }
+  .mhead h2 { font:700 42px/1.05 'Plus Jakarta Sans'; letter-spacing:-.03em; margin:14px auto 0; max-width:760px; }
+  .sec.dark .mhead h2 .g { color:rgba(255,255,255,.34); }
+  .sec.light .mhead h2 .g, .sec.white .mhead h2 .g, .sec.cream .mhead h2 .g { color:rgba(16,32,58,.3); }
+  .mhead .intro { font:400 16px/1.6 Roboto; max-width:660px; margin:18px auto 0; }
+  .sec.light .mhead .intro, .sec.white .mhead .intro, .sec.cream .mhead .intro { color:rgba(16,32,58,.6); }
+  .sec.dark .mhead .intro { color:rgba(255,255,255,.64); }
+
+  .body { display:grid; grid-template-columns:1fr 3fr; gap:48px; align-items:center; margin-top:42px; }
+
+  .mtag { font:700 12px/1 'Plus Jakarta Sans'; letter-spacing:.06em; text-transform:uppercase; }
+  .mtext h3 { font:700 26px/1.14 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:13px 0 13px; }
+  .mtext p { font:400 15px/1.6 Roboto; margin:0 0 20px; }
+  .mtext ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:13px; }
+  .mtext li { display:flex; align-items:flex-start; gap:11px; font:500 14.5px/1.4 Roboto; }
+  .mtext li .ck { flex:0 0 20px; width:20px; height:20px; border-radius:50%; display:grid; place-items:center; font-size:11px; margin-top:1px; }
+  .sec.light .mtext p, .sec.white .mtext p, .sec.cream .mtext p { color:rgba(16,32,58,.62); }
+  .sec.light .mtext li, .sec.white .mtext li, .sec.cream .mtext li { color:rgba(16,32,58,.82); }
+  .sec.dark .mtext p { color:rgba(255,255,255,.62); }
+  .sec.dark .mtext li { color:rgba(255,255,255,.84); }
+
+  .vid { position:relative; width:100%; aspect-ratio:16/9; border-radius:16px; overflow:hidden; background:#0c1424;
+    box-shadow:0 30px 64px -28px rgba(8,18,40,.55); cursor:pointer; }
+  .vid img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .6s cubic-bezier(.2,0,0,1); }
+  .vid:hover img { transform:scale(1.035); }
+  .vid .vgrad { position:absolute; inset:0; background:linear-gradient(180deg, rgba(6,11,20,.05) 30%, rgba(6,11,20,.62) 100%); }
+  .vid .play { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:74px; height:74px; border-radius:50%;
+    border:none; cursor:pointer; display:grid; place-items:center; background:#F57C00; box-shadow:0 10px 30px rgba(245,124,0,.5); transition:transform .2s; }
+  .vid:hover .play { transform:translate(-50%,-50%) scale(1.08); }
+  .vid .play::before { content:""; border-style:solid; border-width:11px 0 11px 18px; border-color:transparent transparent transparent #fff; margin-left:4px; }
+  .vid .ring { position:absolute; left:50%; top:50%; width:74px; height:74px; border-radius:50%; transform:translate(-50%,-50%);
+    border:1.5px solid rgba(255,255,255,.45); opacity:0; }
+  .vid:hover .ring { animation:vring 2.4s cubic-bezier(.2,0,0,1) infinite; }
+  @keyframes vring { from { opacity:.6; transform:translate(-50%,-50%) scale(1); } to { opacity:0; transform:translate(-50%,-50%) scale(1.7); } }
+  .vid .vcap { position:absolute; left:18px; bottom:16px; right:88px; font:600 14px/1.3 'Plus Jakarta Sans'; color:#fff; }
+  .vid .vdur { position:absolute; right:16px; bottom:16px; font:600 11px/1 'Plus Jakarta Sans'; color:#fff;
+    background:rgba(8,14,24,.55); border:1px solid rgba(255,255,255,.22); padding:5px 8px; border-radius:6px; backdrop-filter:blur(4px); }
+
+  /* Product UI layout (replaces the video in the 3/4 column) */
+  .stepui { width:100%; aspect-ratio:16/9; border-radius:16px; overflow:hidden; background:#0b1322; display:flex; flex-direction:column;
+    box-shadow:0 30px 64px -28px rgba(8,18,40,.55); border:1px solid rgba(16,32,58,.14); }
+  .sec.dark .stepui { border-color:rgba(255,255,255,.08); box-shadow:0 40px 90px -40px rgba(0,0,0,.9), 0 0 70px -34px rgba(245,124,0,.3); }
+  .stepui .tb { flex:0 0 42px; background:#0a1120; display:flex; align-items:center; gap:7px; padding:0 14px; border-bottom:1px solid rgba(255,255,255,.06); }
+  .stepui .tb i { width:10px; height:10px; border-radius:50%; background:#2c3a52; display:block; }
+  .stepui .tb .u { margin-left:14px; height:22px; flex:1; max-width:300px; border-radius:8px; background:#162338; display:flex; align-items:center; padding:0 12px; font:600 11px/1 Roboto; color:rgba(255,255,255,.42); }
+  .stepui .pane { flex:1; display:grid; grid-template-columns:1.05fr 1fr; min-height:0; }
+  .stepui .bd { position:relative; overflow:hidden; }
+  .stepui .bd img { width:100%; height:100%; object-fit:cover; display:block; }
+  .stepui .bd .badge { position:absolute; left:14px; top:14px; display:inline-flex; align-items:center; gap:8px; padding:7px 12px; border-radius:100px;
+    background:rgba(8,13,22,.72); border:1px solid rgba(255,255,255,.18); backdrop-filter:blur(6px); font:700 11px/1 'Plus Jakarta Sans'; color:#fff; }
+  .stepui .bd .badge em { width:7px; height:7px; border-radius:50%; background:#F57C00; box-shadow:0 0 0 3px rgba(245,124,0,.25); }
+  .stepui .pnl { padding:20px 22px; color:#fff; display:flex; flex-direction:column; gap:13px; background:#0b1322; border-left:1px solid rgba(255,255,255,.06); min-width:0; }
+  .stepui .ph { display:flex; align-items:center; gap:9px; font:700 13.5px/1 'Plus Jakarta Sans'; color:#fff; }
+  .stepui .ph .dot { width:22px; height:22px; border-radius:50%; background:linear-gradient(135deg,#F8A754,#F57C00); flex:0 0 22px; }
+  .stepui .ph .r { margin-left:auto; font:600 11px/1 Roboto; color:rgba(255,255,255,.45); }
+  .stepui .bignum { display:flex; align-items:baseline; justify-content:space-between; }
+  .stepui .bignum .lab { font:500 12px/1 Roboto; color:rgba(255,255,255,.5); }
+  .stepui .bignum .v { font:800 30px/1 'Schibsted Grotesk'; color:#fff; letter-spacing:-.02em; }
+  .stepui .evalbar2 { height:9px; border-radius:6px; background:linear-gradient(90deg,#15203a,#27374f); position:relative; }
+  .stepui .evalbar2 b { position:absolute; top:-3px; width:4px; height:15px; border-radius:2px; background:#fff; box-shadow:0 0 0 2px rgba(245,124,0,.5); }
+  .stepui .wklist, .stepui .lessons { display:flex; flex-direction:column; gap:8px; }
+  .stepui .wk { display:flex; align-items:center; gap:9px; font:500 12.5px/1.3 Roboto; color:rgba(255,255,255,.84);
+    background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); border-radius:9px; padding:9px 11px; }
+  .stepui .wk em { width:7px; height:7px; border-radius:50%; flex:0 0 7px; }
+  .stepui .wk s { margin-left:auto; text-decoration:none; font:700 10px/1 'Plus Jakarta Sans'; letter-spacing:.04em; padding:4px 8px; border-radius:100px; }
+  .stepui .hi { background:rgba(240,80,80,.16); color:#ff9b9b; } .stepui em.hi { background:#ff6b6b; }
+  .stepui .md { background:rgba(245,124,0,.18); color:#F8A754; } .stepui em.md { background:#F8A754; }
+  .stepui .lo { background:rgba(75,155,191,.18); color:#86c5e0; } .stepui em.lo { background:#86c5e0; }
+  .stepui .gmrow { display:flex; align-items:center; gap:11px; }
+  .stepui .gmrow img { width:38px; height:38px; border-radius:50%; object-fit:cover; flex:0 0 38px; border:1.5px solid rgba(245,124,0,.5); }
+  .stepui .gmn { font:700 13px/1 'Plus Jakarta Sans'; color:#fff; }
+  .stepui .gmt { font:500 11px/1 Roboto; color:rgba(255,255,255,.5); margin-top:4px; }
+  .stepui .prog2 { height:8px; border-radius:5px; background:rgba(255,255,255,.1); position:relative; overflow:hidden; }
+  .stepui .prog2 b { position:absolute; left:0; top:0; bottom:0; background:linear-gradient(90deg,#F8A754,#F57C00); border-radius:5px; }
+  .stepui .ls { display:flex; align-items:center; gap:10px; font:500 12.5px/1.3 Roboto; color:rgba(255,255,255,.84); }
+  .stepui .ls .lk { width:18px; height:18px; border-radius:5px; border:1.5px solid rgba(255,255,255,.22); flex:0 0 18px; display:grid; place-items:center; font-size:10px; color:#fff; }
+  .stepui .ls.done .lk { background:#F57C00; border-color:#F57C00; }
+  .stepui .ls.done { color:rgba(255,255,255,.55); }
+  .stepui .ls.on .lk { border-color:#F8A754; color:#F8A754; }
+  .stepui .puz { display:flex; align-items:center; justify-content:space-between; margin-top:auto; padding:11px 13px; border-radius:10px;
+    background:rgba(245,124,0,.1); border:1px solid rgba(245,124,0,.22); font:600 12px/1 Roboto; color:rgba(255,255,255,.78); }
+  .stepui .puz b { font:800 13px/1 'Schibsted Grotesk'; color:#F8A754; }
+  .stepui .bug { display:flex; flex-direction:column; gap:9px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); border-radius:11px; padding:12px 13px; margin-top:auto; }
+  .stepui .bugh { font:700 11px/1 'Plus Jakarta Sans'; letter-spacing:.06em; text-transform:uppercase; color:#F8A754; }
+  .stepui .bugrow { display:flex; align-items:center; gap:9px; font:500 12.5px/1 Roboto; color:rgba(255,255,255,.84); }
+  .stepui .bugrow em { width:7px; height:7px; border-radius:50%; flex:0 0 7px; }
+  .stepui .bugrow s { margin-left:auto; text-decoration:none; font:700 11px/1 'Schibsted Grotesk'; color:rgba(255,255,255,.6); }
+
+  /* V1 · Underline tabs */
+  .v1 { padding:54px 64px; }
+  .v1 .steps { display:flex; justify-content:center; gap:0; margin-top:30px; border-bottom:1px solid rgba(16,32,58,.12); }
+  .v1 .step { background:none; border:none; cursor:pointer; padding:0 30px 18px; position:relative; text-align:center; }
+  .v1 .step .n { font:800 13px/1 'Schibsted Grotesk'; color:rgba(16,32,58,.3); }
+  .v1 .step .t { font:700 17px/1.2 'Plus Jakarta Sans'; color:rgba(16,32,58,.5); margin-top:7px; transition:color .2s; letter-spacing:-.01em; }
+  .v1 .step.on .t { color:#10203A; }
+  .v1 .step.on .n { color:#F57C00; }
+  .v1 .step .bar { position:absolute; left:24px; right:24px; bottom:-1px; height:2.5px; background:#F57C00; border-radius:3px; transform:scaleX(0); transition:transform .25s; }
+  .v1 .step.on .bar { transform:scaleX(1); }
+  .v1 .mtext li .ck { background:#FEF2E6; color:#DF7100; }
+
+  /* V2 · Connected flow */
+  .v2 { padding:52px 64px; }
+  .v2 .steps { display:flex; justify-content:center; align-items:flex-start; margin-top:30px; max-width:720px; margin-left:auto; margin-right:auto; }
+  .v2 .step { background:none; border:none; cursor:pointer; padding:0; display:flex; flex-direction:column; align-items:center; gap:11px; width:150px; }
+  .v2 .step .dot { width:46px; height:46px; border-radius:50%; display:grid; place-items:center; font:800 16px/1 'Schibsted Grotesk';
+    background:#fff; border:1.5px solid rgba(16,32,58,.16); color:rgba(16,32,58,.5); transition:.25s; }
+  .v2 .step.on .dot { background:#F57C00; border-color:#F57C00; color:#fff; box-shadow:0 8px 20px -6px rgba(245,124,0,.55); }
+  .v2 .step .t { font:700 15px/1.2 'Plus Jakarta Sans'; color:rgba(16,32,58,.55); transition:color .2s; }
+  .v2 .step.on .t { color:#10203A; }
+  .v2 .link { flex:0 0 56px; height:2px; margin-top:22px; background:repeating-linear-gradient(90deg,rgba(16,32,58,.25) 0 5px,transparent 5px 10px); }
+  .v2 .mtext li .ck { background:#FEF2E6; color:#DF7100; }
+
+  /* V3 · Dark segmented */
+  .v3 { padding:56px 64px; }
+  .v3 .steps { display:inline-flex; gap:4px; margin:28px auto 0; padding:5px; border-radius:100px; background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.1); }
+  .v3 .stepswrap { display:flex; justify-content:center; }
+  .v3 .step { background:none; border:none; cursor:pointer; padding:11px 24px; border-radius:100px; display:flex; align-items:center; gap:9px;
+    font:700 15px/1 'Plus Jakarta Sans'; color:rgba(255,255,255,.6); transition:.2s; }
+  .v3 .step .n { font:800 11px/1 'Schibsted Grotesk'; opacity:.7; }
+  .v3 .step.on { background:#F57C00; color:#fff; box-shadow:0 8px 22px -8px rgba(245,124,0,.6); }
+  .v3 .vid { box-shadow:0 40px 90px -40px rgba(0,0,0,.9), 0 0 70px -30px rgba(245,124,0,.3); border:1px solid rgba(255,255,255,.08); }
+  .v3 .mtext li .ck { background:rgba(245,124,0,.18); color:#F8A754; }
+
+  /* V4 · Card chips + browser frame */
+  .v4 { padding:52px 64px; }
+  .v4 .steps { display:flex; justify-content:center; gap:16px; margin-top:30px; }
+  .v4 .step { width:236px; text-align:left; cursor:pointer; background:#fff; border:1.5px solid rgba(16,32,58,.12); border-radius:14px;
+    padding:16px 18px; transition:.22s; }
+  .v4 .step:hover { border-color:rgba(16,32,58,.24); }
+  .v4 .step.on { border-color:#F57C00; box-shadow:0 14px 30px -16px rgba(245,124,0,.4); }
+  .v4 .step .k { display:flex; align-items:center; justify-content:space-between; font:700 11px/1 'Plus Jakarta Sans'; letter-spacing:.05em; text-transform:uppercase; color:rgba(16,32,58,.45); }
+  .v4 .step.on .k { color:#F57C00; }
+  .v4 .step .t { font:700 18px/1.2 'Plus Jakarta Sans'; letter-spacing:-.01em; margin-top:9px; color:#10203A; }
+  .v4 .step .arr { transition:transform .2s; }
+  .v4 .step.on .arr { transform:translateX(3px); }
+  .v4 .vframe { border-radius:16px; overflow:hidden; box-shadow:0 30px 64px -28px rgba(8,18,40,.5); border:1px solid rgba(16,32,58,.14); }
+  .v4 .vframe .fbar { height:34px; background:#0a1120; display:flex; align-items:center; gap:6px; padding:0 13px; }
+  .v4 .vframe .fbar i { width:9px; height:9px; border-radius:50%; background:#2c3a52; }
+  .v4 .vframe .fbar .u { margin-left:12px; height:17px; flex:1; max-width:260px; border-radius:8px; background:#162338; }
+  .v4 .vframe .vid { border-radius:0; box-shadow:none; }
+  .v4 .mtext li .ck { background:#FEF2E6; color:#DF7100; }
+
+  /* V5 · Editorial numbered */
+  .v5 { padding:54px 64px; }
+  .v5 .steps { display:flex; justify-content:center; margin-top:28px; }
+  .v5 .step { background:none; border:none; cursor:pointer; padding:6px 34px; text-align:center; position:relative; }
+  .v5 .step + .step { border-left:1px solid rgba(16,32,58,.14); }
+  .v5 .step .n { font:800 30px/1 'Schibsted Grotesk'; letter-spacing:-.03em; color:rgba(16,32,58,.16); transition:color .2s; }
+  .v5 .step .t { font:600 14px/1.2 'Plus Jakarta Sans'; color:rgba(16,32,58,.5); margin-top:8px; letter-spacing:.01em; transition:color .2s; }
+  .v5 .step.on .n { color:#F57C00; }
+  .v5 .step.on .t { color:#10203A; }
+  .v5 .mtext { padding-left:22px; border-left:3px solid #F57C00; }
+  .v5 .mtext li .ck { background:#FEF2E6; color:#DF7100; }
+
+  /* =========================================================================
+     B · EARLIER DIRECTIONS (m1–m6) — live product UI + real board
+  ========================================================================= */
+  img.ph { display:block; width:100%; height:100%; object-fit:cover; object-position:50% 50%; }
+
+  .frame { border-radius:12px; overflow:hidden; background:#0c1424; border:1px solid rgba(16,32,58,.16); box-shadow:0 18px 40px -18px rgba(8,18,40,.5); }
+  .frame .bar { height:30px; display:flex; align-items:center; gap:6px; padding:0 12px; background:#0a1120; border-bottom:1px solid rgba(255,255,255,.06); }
+  .frame .bar i { width:9px; height:9px; border-radius:50%; background:#2c3a52; display:block; }
+  .frame .bar .pill { margin-left:10px; height:15px; flex:1; max-width:220px; border-radius:8px; background:#162338; }
+  .frame .scr { position:relative; overflow:hidden; background:#0c1424; }
+
+  .ui { width:100%; height:100%; background:#0c1424; color:#fff; padding:16px 18px; display:flex; flex-direction:column; gap:11px; }
+  .ui .uihead { display:flex; align-items:center; gap:9px; font:700 13.5px/1 'Plus Jakarta Sans'; }
+  .ui .uihead .dot { width:20px; height:20px; border-radius:50%; background:linear-gradient(135deg,#F8A754,#F57C00); flex:0 0 20px; }
+  .ui .uihead .tagr { margin-left:auto; font:600 11px/1 Roboto; color:rgba(255,255,255,.5); }
+  .ui .evalbar { height:10px; border-radius:6px; background:linear-gradient(90deg,#15203a,#27374f); position:relative; }
+  .ui .evalbar b { position:absolute; top:-3px; width:4px; height:16px; border-radius:2px; background:#fff; box-shadow:0 0 0 2px rgba(245,124,0,.5); }
+  .coach .wk { display:flex; align-items:center; gap:10px; font:500 13px/1.25 Roboto; color:rgba(255,255,255,.82); background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); border-radius:9px; padding:10px 12px; }
+  .coach .wk em { width:7px; height:7px; border-radius:50%; flex:0 0 7px; }
+  .coach .wk s { margin-left:auto; text-decoration:none; font:700 10.5px/1 'Plus Jakarta Sans'; letter-spacing:.04em; padding:4px 9px; border-radius:100px; }
+  .coach .wk .hi { background:rgba(240,80,80,.16); color:#ff9b9b; } .coach .wk em.hi{ background:#ff6b6b; }
+  .coach .wk .md { background:rgba(245,124,0,.18); color:#F8A754; } .coach .wk em.md{ background:#F8A754; }
+  .coach .wk .lo { background:rgba(75,155,191,.18); color:#86c5e0; } .coach .wk em.lo{ background:#86c5e0; }
+  .plan .prog { height:8px; border-radius:5px; background:rgba(255,255,255,.1); position:relative; overflow:hidden; }
+  .plan .prog b { position:absolute; left:0; top:0; bottom:0; background:linear-gradient(90deg,#F8A754,#F57C00); border-radius:5px; }
+  .plan .task { display:flex; align-items:center; gap:11px; font:500 13px/1.3 Roboto; color:rgba(255,255,255,.86); padding:9px 0; border-bottom:1px solid rgba(255,255,255,.06); }
+  .plan .task .ck { width:18px; height:18px; border-radius:5px; border:1.5px solid rgba(255,255,255,.25); flex:0 0 18px; display:grid; place-items:center; color:#fff; font-size:11px; }
+  .plan .task.done .ck { background:#F57C00; border-color:#F57C00; }
+  .plan .task.done { color:rgba(255,255,255,.5); }
+
+  /* M1 · Three-phase stepper (light) */
+  .m1 { background:#F1F4F8; color:#10203A; padding:56px 64px; }
+  .m1 .eyebrow { color:#F57C00; }
+  .m1 h2 { font:700 42px/1.05 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:14px 0 6px; }
+  .m1 h2 .g { color:rgba(16,32,58,.32); }
+  .m1 .sub { font:400 16px/1.5 Roboto; color:rgba(16,32,58,.6); max-width:560px; margin-bottom:40px; }
+  .m1 .cols { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; position:relative; }
+  .m1 .col .frame .scr { height:226px; }
+  .m1 .col .num { display:inline-flex; align-items:center; gap:10px; white-space:nowrap; margin-top:22px; font:700 13px/1 Roboto; color:#F57C00; }
+  .m1 .col .num .dot { width:26px; height:26px; border-radius:50%; background:#fff; border:1px solid rgba(16,32,58,.14); display:grid; place-items:center; font:800 12px/1 'Schibsted Grotesk'; color:#10203A; }
+  .m1 .col h3 { font:700 23px/1.15 'Plus Jakarta Sans'; letter-spacing:-.02em; margin:12px 0 8px; }
+  .m1 .col p { font:400 15px/1.55 Roboto; color:rgba(16,32,58,.62); }
+  .m1 .track { position:absolute; top:113px; left:16%; right:16%; height:2px; background:repeating-linear-gradient(90deg,rgba(16,32,58,.2) 0 6px,transparent 6px 12px); z-index:0; }
+
+  /* M2 · Vertical timeline + big screen (dark) */
+  .m2 { background:radial-gradient(120% 90% at 85% 0%, #15233a, #080d16 72%); color:#fff; padding:58px 64px; display:flex; gap:56px; }
+  .m2 .left { width:430px; flex:0 0 430px; }
+  .m2 .eyebrow { color:#7FB0E6; }
+  .m2 h2 { font:700 38px/1.08 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:14px 0 34px; }
+  .m2 .step { display:flex; gap:18px; padding-bottom:30px; position:relative; }
+  .m2 .step:not(:last-child)::before { content:""; position:absolute; left:17px; top:38px; bottom:0; width:2px; background:rgba(255,255,255,.12); }
+  .m2 .step .b { flex:0 0 36px; width:36px; height:36px; border-radius:50%; display:grid; place-items:center; font:800 14px/1 'Schibsted Grotesk'; background:rgba(245,124,0,.16); color:#F8A754; border:1px solid rgba(245,124,0,.4); z-index:1; }
+  .m2 .step.on .b { background:#F57C00; color:#fff; border-color:#F57C00; }
+  .m2 .step h3 { font:700 19px/1.2 'Plus Jakarta Sans'; margin:6px 0 6px; }
+  .m2 .step p { font:400 14px/1.55 Roboto; color:rgba(255,255,255,.6); }
+  .m2 .right { flex:1; display:flex; align-items:center; }
+  .m2 .right .frame { width:100%; }
+  .m2 .right .scr { height:438px; }
+
+  /* M3 · Workspace (dark) */
+  .m3 { background:#080d16; color:#fff; padding:54px 64px; }
+  .m3 .top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:26px; }
+  .m3 .eyebrow { color:#F57C00; }
+  .m3 h2 { font:700 40px/1.05 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:12px 0 0; }
+  .m3 .sub { font:400 15px/1.5 Roboto; color:rgba(255,255,255,.55); max-width:320px; }
+  .m3 .work { display:flex; gap:18px; height:430px; }
+  .m3 .work .big { flex:1.5; }
+  .m3 .work .big .scr { height:400px; }
+  .m3 .work .side { flex:1; display:flex; flex-direction:column; gap:18px; }
+  .m3 .work .board { flex:1.1; border-radius:14px; overflow:hidden; position:relative; border:1px solid rgba(255,255,255,.08); }
+  .m3 .work .board .lab { position:absolute; left:0; right:0; bottom:0; padding:13px 15px; background:linear-gradient(transparent,rgba(6,11,20,.92)); }
+  .m3 .work .board .k { font:800 10.5px/1 'Schibsted Grotesk'; letter-spacing:.1em; text-transform:uppercase; color:#F8A754; }
+  .m3 .work .board .t { font:700 15px/1.15 'Plus Jakarta Sans'; margin-top:5px; }
+  .m3 .work .planw { flex:1; }
+  .m3 .work .planw .scr { height:100%; }
+
+  /* M4 · Device-led hero (light) */
+  .m4 { background:#fff; color:#10203A; padding:54px 64px; text-align:center; }
+  .m4 .eyebrow { color:#F57C00; }
+  .m4 h2 { font:700 44px/1.04 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:14px auto 8px; }
+  .m4 h2 .o { color:#F57C00; }
+  .m4 .sub { font:400 16px/1.5 Roboto; color:rgba(16,32,58,.6); max-width:520px; margin:0 auto 30px; }
+  .m4 .hero { max-width:760px; margin:0 auto; }
+  .m4 .hero .scr { height:330px; }
+  .m4 .chips { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; max-width:880px; margin:30px auto 0; }
+  .m4 .chip { text-align:left; padding:20px 22px; border:1px solid rgba(16,32,58,.12); border-radius:12px; background:#F7F8F9; }
+  .m4 .chip .k { font:800 12px/1 'Schibsted Grotesk'; color:#F57C00; letter-spacing:.06em; }
+  .m4 .chip h3 { font:700 18px/1.15 'Plus Jakarta Sans'; margin:9px 0 6px; }
+  .m4 .chip p { font:400 13.5px/1.5 Roboto; color:rgba(16,32,58,.6); }
+
+  /* M5 · Editorial diptych steps (light) */
+  .m5 { background:#F7F8F9; color:#10203A; padding:54px 64px; }
+  .m5 .eyebrow { color:#F57C00; }
+  .m5 h2 { font:700 38px/1.06 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:12px 0 32px; max-width:600px; }
+  .m5 .rows { display:flex; flex-direction:column; gap:20px; }
+  .m5 .row { display:flex; gap:36px; align-items:center; background:#fff; border:1px solid rgba(16,32,58,.1); border-radius:18px; overflow:hidden; }
+  .m5 .row.rev { flex-direction:row-reverse; }
+  .m5 .row .frame { flex:0 0 380px; margin:0; border:none; box-shadow:none; border-radius:0; }
+  .m5 .row .scr { height:236px; }
+  .m5 .row .body { display:block; flex:1; padding:0 40px; margin-top:0; }
+  .m5 .row .no { font:800 40px/1 'Schibsted Grotesk'; color:rgba(16,32,58,.12); letter-spacing:-.03em; }
+  .m5 .row h3 { font:700 26px/1.12 'Plus Jakarta Sans'; letter-spacing:-.02em; margin:8px 0 10px; }
+  .m5 .row p { font:400 15.5px/1.6 Roboto; color:rgba(16,32,58,.62); max-width:430px; }
+
+  /* M6 · Annotated dashboard (dark) */
+  .m6 { background:radial-gradient(110% 80% at 50% -10%, #16243a, #080d16 70%); color:#fff; padding:54px 64px; text-align:center; }
+  .m6 .eyebrow { color:#7FB0E6; }
+  .m6 h2 { font:700 40px/1.05 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:14px auto 30px; }
+  .m6 h2 .o { color:#F8A754; }
+  .m6 .stage { display:flex; align-items:center; justify-content:center; gap:0; max-width:1060px; margin:0 auto; }
+  .m6 .anno { flex:0 0 232px; text-align:left; }
+  .m6 .anno.r { text-align:right; }
+  .m6 .anno .k { display:inline-flex; align-items:center; gap:8px; font:800 12px/1 'Schibsted Grotesk'; letter-spacing:.05em; color:#F8A754; }
+  .m6 .anno .k .n { width:24px; height:24px; border-radius:50%; background:rgba(245,124,0,.18); border:1px solid rgba(245,124,0,.45); display:grid; place-items:center; }
+  .m6 .anno.r .k { flex-direction:row-reverse; }
+  .m6 .anno h3 { font:700 18px/1.2 'Plus Jakarta Sans'; margin:10px 0 6px; }
+  .m6 .anno p { font:400 13px/1.5 Roboto; color:rgba(255,255,255,.6); }
+  .m6 .center { flex:1; padding:0 28px; }
+  .m6 .center .frame { width:100%; }
+  .m6 .center .scr { height:330px; }
+  .m6 .connect { height:1px; background:linear-gradient(90deg,transparent,rgba(245,124,0,.5),transparent); margin:20px -8px; }
+
+  /* =========================================================================
+     C · INSPIRED BY STRIPE & LINEAR (n1–n4)
+  ========================================================================= */
+  /* N1 · Linear glass console (dark) */
+  .n1 { background:#080b12; color:#fff; padding:54px 64px; position:relative; overflow:hidden; }
+  .n1::before { content:""; position:absolute; top:-34%; left:50%; transform:translateX(-50%); width:780px; height:560px;
+    background:radial-gradient(50% 50% at 50% 50%, rgba(245,124,0,.20), transparent 70%); pointer-events:none; }
+  .n1 .head { text-align:center; position:relative; }
+  .n1 .eyebrow { color:#F8A754; }
+  .n1 h2 { font:700 40px/1.05 'Plus Jakarta Sans'; letter-spacing:-.03em; margin:14px auto 0; }
+  .n1 h2 .g { color:rgba(255,255,255,.32); }
+  .n1 .intro { font:400 15px/1.6 Roboto; color:rgba(255,255,255,.6); max-width:600px; margin:16px auto 0; }
+  .n1 .tabswrap { display:flex; justify-content:center; position:relative; }
+  .n1 .tabs { display:inline-flex; gap:4px; margin:24px auto 0; padding:5px; border-radius:13px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); }
+  .n1 .tab { display:flex; align-items:center; gap:9px; padding:10px 20px; border-radius:9px; cursor:pointer; border:none; background:none;
+    font:700 14px/1 'Plus Jakarta Sans'; color:rgba(255,255,255,.6); transition:.2s; }
+  .n1 .tab .n { font:800 11px/1 'Schibsted Grotesk'; color:rgba(255,255,255,.4); }
+  .n1 .tab.on { background:rgba(255,255,255,.08); color:#fff; box-shadow:inset 0 0 0 1px rgba(255,255,255,.12); }
+  .n1 .tab.on .n { color:#F8A754; }
+  .n1 .stage { position:relative; margin-top:34px; display:grid; grid-template-columns:2fr 3fr; gap:44px; align-items:center; }
+  .n1 .copy .tag { font:700 12px/1 'Plus Jakarta Sans'; letter-spacing:.08em; text-transform:uppercase; color:#F8A754; }
+  .n1 .copy h3 { font:700 27px/1.14 'Plus Jakarta Sans'; letter-spacing:-.02em; margin:14px 0 12px; }
+  .n1 .copy p { font:400 15.5px/1.6 Roboto; color:rgba(255,255,255,.62); margin:0 0 20px; max-width:420px; }
+  .n1 .copy ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px; }
+  .n1 .copy li { display:flex; gap:10px; font:500 14px/1.4 Roboto; color:rgba(255,255,255,.82); }
+  .n1 .copy li .ck { color:#F8A754; }
+  .n1 .glass { border-radius:18px; padding:10px; background:linear-gradient(160deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.12); box-shadow:0 50px 100px -50px rgba(0,0,0,.95); }
+  .n1 .glass .frame { border-color:rgba(255,255,255,.08); }
+  .n1 .glass .scr { height:300px; }
+
+  /* N2 · Stripe gradient + tilted dashboard (light) */
+  .n2 { background:#fff; color:#10203A; padding:0 64px 56px; position:relative; overflow:hidden; }
+  .n2::before { content:""; position:absolute; top:0; left:0; right:0; height:420px;
+    background:linear-gradient(108deg,#FFE2C4 0%, #FFD0A6 26%, #FCE9DC 55%, #ffffff 82%); transform:skewY(-6deg); transform-origin:top left; }
+  .n2 .inner { position:relative; padding-top:56px; }
+  .n2 .head { text-align:center; }
+  .n2 .eyebrow { color:#DF7100; }
+  .n2 h2 { font:700 42px/1.04 'Plus Jakarta Sans'; letter-spacing:-.03em; margin:14px auto 0; }
+  .n2 h2 .g { color:rgba(16,32,58,.4); }
+  .n2 .intro { font:400 16px/1.6 Roboto; color:rgba(16,32,58,.66); max-width:640px; margin:16px auto 0; }
+  .n2 .steps { display:flex; justify-content:center; gap:10px; margin-top:24px; }
+  .n2 .pill { display:flex; align-items:center; gap:8px; padding:9px 18px; border-radius:100px; cursor:pointer; border:1px solid rgba(16,32,58,.12);
+    background:#fff; font:700 14px/1 'Plus Jakarta Sans'; color:rgba(16,32,58,.55); box-shadow:0 4px 14px -8px rgba(16,24,40,.3); transition:.2s; }
+  .n2 .pill .n { font:800 11px/1 'Schibsted Grotesk'; color:rgba(16,32,58,.35); }
+  .n2 .pill.on { background:linear-gradient(120deg,#F57C00,#FF9D3D); color:#fff; border-color:transparent; box-shadow:0 10px 24px -10px rgba(245,124,0,.7); }
+  .n2 .pill.on .n { color:rgba(255,255,255,.85); }
+  .n2 .stage { display:grid; grid-template-columns:2fr 3fr; gap:48px; align-items:center; margin-top:40px; }
+  .n2 .copy .tag { font:700 12px/1 'Plus Jakarta Sans'; letter-spacing:.08em; text-transform:uppercase; color:#DF7100; }
+  .n2 .copy h3 { font:700 28px/1.12 'Plus Jakarta Sans'; letter-spacing:-.02em; margin:14px 0 12px; }
+  .n2 .copy p { font:400 16px/1.6 Roboto; color:rgba(16,32,58,.64); margin:0 0 20px; max-width:430px; }
+  .n2 .copy ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px; }
+  .n2 .copy li { display:flex; gap:10px; font:500 14.5px/1.4 Roboto; color:rgba(16,32,58,.82); }
+  .n2 .copy li .ck { color:#DF7100; }
+  .n2 .tilt { perspective:1600px; }
+  .n2 .tilt .card { transform:rotateY(-15deg) rotateX(7deg); transform-style:preserve-3d; border-radius:16px; overflow:hidden;
+    box-shadow:-34px 44px 90px -34px rgba(16,24,40,.5); transition:transform .55s cubic-bezier(.2,0,0,1); }
+  .n2 .tilt:hover .card { transform:rotateY(-6deg) rotateX(3deg); }
+  .n2 .tilt .scr { height:320px; }
+
+  /* N3 · Stripe API rows (light) */
+  .n3 { background:#F7F8FA; color:#10203A; padding:58px 64px; }
+  .n3 .grid { display:grid; grid-template-columns:340px 1fr; gap:64px; align-items:start; }
+  .n3 .aside { position:sticky; top:40px; }
+  .n3 .eyebrow { color:#DF7100; }
+  .n3 .aside h2 { font:700 34px/1.1 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:14px 0 16px; }
+  .n3 .aside p { font:400 15px/1.6 Roboto; color:rgba(16,32,58,.6); margin:0 0 24px; }
+  .n3 .nav { display:flex; flex-direction:column; gap:3px; }
+  .n3 .nav .it { display:flex; align-items:center; gap:12px; padding:13px 15px; border-radius:11px; cursor:pointer;
+    font:700 15px/1 'Plus Jakarta Sans'; color:rgba(16,32,58,.5); transition:.2s; }
+  .n3 .nav .it .n { font:800 12px/1 'Schibsted Grotesk'; color:rgba(16,32,58,.3); width:22px; }
+  .n3 .nav .it.on { background:#fff; color:#10203A; box-shadow:0 8px 20px -12px rgba(16,24,40,.35); }
+  .n3 .nav .it.on .n { color:#F57C00; }
+  .n3 .panels { display:flex; flex-direction:column; gap:20px; }
+  .n3 .panel { background:#fff; border:1px solid rgba(16,32,58,.1); border-radius:18px; overflow:hidden; display:grid; grid-template-columns:1fr 1fr;
+    transition:box-shadow .25s, border-color .25s; }
+  .n3 .panel.on { border-color:rgba(245,124,0,.5); box-shadow:0 18px 40px -22px rgba(245,124,0,.35); }
+  .n3 .panel .body { padding:30px 32px; display:flex; flex-direction:column; justify-content:center; }
+  .n3 .panel .mono { font:600 11.5px/1 'Schibsted Grotesk'; letter-spacing:.06em; text-transform:uppercase; color:#F57C00; }
+  .n3 .panel h3 { font:700 22px/1.14 'Plus Jakarta Sans'; letter-spacing:-.02em; margin:10px 0 8px; }
+  .n3 .panel p { font:400 14.5px/1.6 Roboto; color:rgba(16,32,58,.62); margin:0; }
+  .n3 .panel .vis { padding:22px; display:flex; align-items:center; background:#EEF1F6; border-left:1px solid rgba(16,32,58,.08); }
+  .n3 .panel .vis .frame { width:100%; }
+  .n3 .panel .vis .scr { height:184px; }
+
+  /* N4 · Linear bento (dark) */
+  .n4 { background:#080b12; color:#fff; padding:54px 64px; position:relative; overflow:hidden; }
+  .n4::before { content:""; position:absolute; top:-20%; left:-10%; width:620px; height:520px;
+    background:radial-gradient(50% 50% at 50% 50%, rgba(245,124,0,.18), transparent 70%); pointer-events:none; }
+  .n4 .head { position:relative; margin-bottom:28px; }
+  .n4 .eyebrow { color:#F8A754; }
+  .n4 h2 { font:700 40px/1.05 'Plus Jakarta Sans'; letter-spacing:-.03em; margin:14px 0 0; }
+  .n4 h2 .g { color:rgba(255,255,255,.32); }
+  .n4 .intro { font:400 15px/1.6 Roboto; color:rgba(255,255,255,.6); max-width:600px; margin:14px 0 0; }
+  .n4 .bento { position:relative; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .n4 .tile { border-radius:18px; border:1px solid rgba(255,255,255,.1); background:linear-gradient(160deg, rgba(255,255,255,.055), rgba(255,255,255,.015));
+    padding:22px; position:relative; overflow:hidden; }
+  .n4 .tile .tag { font:700 11.5px/1 'Plus Jakarta Sans'; letter-spacing:.08em; text-transform:uppercase; color:#F8A754; }
+  .n4 .tile h3 { font:700 19px/1.16 'Plus Jakarta Sans'; letter-spacing:-.01em; margin:10px 0 7px; }
+  .n4 .tile p { font:400 13.5px/1.5 Roboto; color:rgba(255,255,255,.6); margin:0; }
+  .n4 .tile.wide { grid-column:span 3; display:grid; grid-template-columns:1fr 1.35fr; gap:36px; align-items:center; padding:30px 32px; }
+  .n4 .tile.wide h3 { font:700 27px/1.14 'Plus Jakarta Sans'; letter-spacing:-.02em; margin:12px 0 10px; }
+  .n4 .tile.wide p { font:400 15px/1.6 Roboto; max-width:380px; }
+  .n4 .tile .glass { border-radius:14px; padding:8px; background:linear-gradient(160deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.12); box-shadow:0 40px 80px -44px rgba(0,0,0,.9); }
+  .n4 .tile.wide .glass .scr { height:250px; }
+  .n4 .tile .mini { margin-bottom:16px; border-radius:12px; overflow:hidden; }
+  .n4 .tile .mini .scr { height:150px; }
+
+  /* =========================================================================
+     D · 10 MORE DIRECTIONS (x1–x10)
+  ========================================================================= */
+  .sec.xd { color:#fff; } .sec.xl { color:#10203A; }
+  .xhead { text-align:center; }
+  .xhead h2 { font:700 40px/1.05 'Plus Jakarta Sans'; letter-spacing:-.03em; margin:14px auto 0; max-width:760px; }
+  .xhead .intro { font:400 15.5px/1.6 Roboto; max-width:640px; margin:15px auto 0; }
+  .xd .xhead h2 .g { color:rgba(255,255,255,.32); } .xl .xhead h2 .g { color:rgba(16,32,58,.3); }
+  .xd .xhead .intro { color:rgba(255,255,255,.62); } .xl .xhead .intro { color:rgba(16,32,58,.6); }
+  .xlist { list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .xlist li { display:flex; gap:9px; font:500 14px/1.4 Roboto; }
+  .xd .xlist li { color:rgba(255,255,255,.82); } .xl .xlist li { color:rgba(16,32,58,.82); }
+  .xd .xlist .ck { color:#F8A754; } .xl .xlist .ck { color:#DF7100; }
+  /* generic copy block (Copy component) inside x-sections */
+  .xl .copy .tag, .xd .copy .tag { font:700 12px/1 'Plus Jakarta Sans'; letter-spacing:.08em; text-transform:uppercase; }
+  .xl .copy .tag { color:#DF7100; } .xd .copy .tag { color:#F8A754; }
+  .xl .copy h3, .xd .copy h3 { font:700 27px/1.14 'Plus Jakarta Sans'; letter-spacing:-.02em; margin:14px 0 12px; }
+  .xd .copy h3 { color:#fff; } .xl .copy h3 { color:#10203A; }
+  .xl .copy p, .xd .copy p { font:400 15.5px/1.6 Roboto; margin:0 0 18px; max-width:420px; }
+  .xd .copy p { color:rgba(255,255,255,.62); } .xl .copy p { color:rgba(16,32,58,.62); }
+  .xl .copy ul, .xd .copy ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .xl .copy li, .xd .copy li { display:flex; gap:9px; font:500 14px/1.4 Roboto; }
+  .xd .copy li { color:rgba(255,255,255,.82); } .xl .copy li { color:rgba(16,32,58,.82); }
+  .xd .copy li .ck { color:#F8A754; } .xl .copy li .ck { color:#DF7100; }
+  .x1 .glass, .x5 .glass, .x7 .glass { border-radius:16px; padding:9px; background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.12); box-shadow:0 40px 90px -46px rgba(0,0,0,.85); }
+  .x1 .glass .frame, .x5 .glass .frame, .x7 .glass .frame { border-color:rgba(255,255,255,.08); }
+
+  /* X1 · sticky accordion + pinned preview */
+  .x1 { background:radial-gradient(120% 80% at 80% -10%,#16243a,#080d16 72%); padding:54px 64px; }
+  .x1 .x1-grid { display:grid; grid-template-columns:1fr 1.25fr; gap:48px; align-items:center; margin-top:30px; }
+  .x1-acc { display:flex; flex-direction:column; gap:6px; }
+  .x1-item { display:flex; gap:18px; cursor:pointer; padding:6px 0; }
+  .x1-bar { flex:0 0 3px; border-radius:3px; background:rgba(255,255,255,.12); }
+  .x1-item.on .x1-bar { background:#F57C00; }
+  .x1-k { display:flex; align-items:center; gap:10px; font:700 19px/1.2 'Plus Jakarta Sans'; color:rgba(255,255,255,.55); }
+  .x1-item.on .x1-k { color:#fff; }
+  .x1-k .n { font:800 12px/1 'Schibsted Grotesk'; color:#F8A754; }
+  .x1-d { max-height:0; overflow:hidden; opacity:0; transition:max-height .35s, opacity .3s, margin .3s; }
+  .x1-item.on .x1-d { max-height:220px; opacity:1; margin-top:10px; }
+  .x1-d p { font:400 14.5px/1.6 Roboto; color:rgba(255,255,255,.62); margin:0; }
+  .x1 .glass .scr { height:310px; }
+
+  /* X2 · filmstrip scroll-snap */
+  .x2 { background:#F1F4F8; padding:54px 64px; }
+  .x2-head { display:flex; justify-content:space-between; align-items:flex-end; gap:40px; }
+  .x2-head h2 { font:700 38px/1.05 'Plus Jakarta Sans'; letter-spacing:-.03em; margin:12px 0 0; }
+  .x2-head .intro { font:400 15px/1.55 Roboto; color:rgba(16,32,58,.6); max-width:320px; }
+  .x2-strip { display:flex; gap:22px; overflow-x:auto; padding:28px 0 10px; scroll-snap-type:x mandatory; }
+  .x2-card { flex:0 0 60%; scroll-snap-align:center; background:#fff; border:1px solid rgba(16,32,58,.1); border-radius:18px; overflow:hidden; box-shadow:0 16px 40px -24px rgba(16,24,40,.3); }
+  .x2-card .frame { margin:14px 14px 0; }
+  .x2-card .scr { height:240px; }
+  .x2-meta { display:flex; gap:16px; padding:20px 22px 24px; }
+  .x2-n { font:800 34px/1 'Schibsted Grotesk'; color:rgba(16,32,58,.14); }
+  .x2-meta h3 { font:700 20px/1.15 'Plus Jakarta Sans'; margin:0 0 6px; color:#10203A; }
+  .x2-meta p { font:400 14px/1.55 Roboto; color:rgba(16,32,58,.6); margin:0; }
+
+  /* X3 · big-type split */
+  .x3 { background:#FAFAF7; padding:56px 64px; display:grid; grid-template-columns:1fr 1.1fr; gap:56px; align-items:center; }
+  .x3-left h2 { font:800 52px/1.02 'Plus Jakarta Sans'; letter-spacing:-.035em; margin:14px 0 16px; color:#10203A; }
+  .x3-left .intro { font:400 16px/1.6 Roboto; color:rgba(16,32,58,.62); max-width:380px; }
+  .x3-tag { margin-top:22px; font:700 13px/1 'Plus Jakarta Sans'; letter-spacing:.04em; color:#F57C00; }
+  .x3-list { display:flex; flex-direction:column; gap:16px; }
+  .x3-row { display:grid; grid-template-columns:40px 150px 1fr; gap:18px; align-items:center; background:#fff; border:1px solid rgba(16,32,58,.1); border-radius:14px; padding:14px; }
+  .x3-n { font:800 20px/1 'Schibsted Grotesk'; color:rgba(16,32,58,.2); }
+  .x3-scr .frame { margin:0; }
+  .x3-scr .scr { height:96px; }
+  .x3-c h3 { font:700 19px/1.15 'Plus Jakarta Sans'; margin:0 0 5px; color:#10203A; }
+  .x3-c p { font:400 13.5px/1.5 Roboto; color:rgba(16,32,58,.6); margin:0; }
+
+  /* X4 · watermark zigzag */
+  .x4 { background:#fff; padding:54px 64px; }
+  .x4-rows { display:flex; flex-direction:column; gap:46px; margin-top:36px; }
+  .x4-row { display:grid; grid-template-columns:1.1fr 1fr; gap:54px; align-items:center; }
+  .x4-row.rev { direction:rtl; }
+  .x4-row.rev > * { direction:ltr; }
+  .x4-scr .scr { height:300px; }
+  .x4-c { position:relative; }
+  .x4-wm { position:absolute; top:-46px; right:0; font:800 120px/1 'Schibsted Grotesk'; color:rgba(16,32,58,.05); letter-spacing:-.04em; }
+  .x4-tag { font:700 12px/1 'Plus Jakarta Sans'; letter-spacing:.08em; text-transform:uppercase; color:#F57C00; }
+  .x4-c h3 { font:700 30px/1.12 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:12px 0 12px; color:#10203A; }
+  .x4-c p { font:400 16px/1.6 Roboto; color:rgba(16,32,58,.62); margin:0; max-width:420px; }
+
+  /* X5 · orbit loop */
+  .x5 { background:radial-gradient(120% 90% at 50% -10%,#16243a,#080d16 72%); padding:50px 64px; }
+  .x5-orbit { position:relative; width:600px; height:430px; margin:24px auto 0; }
+  .x5-ring { position:absolute; inset:24px 70px; border:1.5px dashed rgba(255,255,255,.18); border-radius:50%; }
+  .x5-center { position:absolute; left:50%; top:52%; transform:translate(-50%,-50%); width:320px; z-index:2; }
+  .x5-center .scr { height:188px; }
+  .x5-node { position:absolute; z-index:3; display:flex; flex-direction:column; align-items:center; gap:4px; background:rgba(8,13,22,.72); border:1px solid rgba(255,255,255,.16); backdrop-filter:blur(6px); border-radius:14px; padding:11px 18px; cursor:pointer; transition:.2s; }
+  .x5-node.on { background:#F57C00; border-color:#F57C00; box-shadow:0 10px 26px -10px rgba(245,124,0,.7); }
+  .x5-node .x5-n { font:800 13px/1 'Schibsted Grotesk'; color:#F8A754; }
+  .x5-node.on .x5-n { color:#fff; }
+  .x5-node .x5-t { font:700 14px/1 'Plus Jakarta Sans'; color:#fff; }
+  .x5-top { top:0; left:50%; transform:translateX(-50%); }
+  .x5-left { bottom:8px; left:20px; }
+  .x5-right { bottom:8px; right:20px; }
+
+  /* X6 · metric tabs */
+  .x6 { background:#fff; padding:54px 64px; }
+  .x6-tabs { display:flex; justify-content:center; gap:8px; margin-top:24px; }
+  .x6-tab { padding:10px 20px; border-radius:100px; border:1px solid rgba(16,32,58,.12); background:#fff; cursor:pointer; font:700 14px/1 'Plus Jakarta Sans'; color:rgba(16,32,58,.55); display:flex; gap:8px; align-items:center; transition:.2s; }
+  .x6-tab .n { font:800 11px/1 'Schibsted Grotesk'; color:rgba(16,32,58,.35); }
+  .x6-tab.on { background:#10203A; border-color:#10203A; color:#fff; }
+  .x6-tab.on .n { color:#F8A754; }
+  .x6-body { display:grid; grid-template-columns:2fr 3fr; gap:48px; align-items:center; margin-top:34px; }
+  .x6-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:18px; }
+  .x6-stat { background:#F7F8FA; border:1px solid rgba(16,32,58,.08); border-radius:12px; padding:16px; }
+  .x6-stat .v { font:800 22px/1 'Plus Jakarta Sans'; color:#10203A; }
+  .x6-stat .l { font:500 12px/1.35 Roboto; color:rgba(16,32,58,.55); margin-top:6px; }
+  .x6-right .scr { height:280px; }
+
+  /* X7 · console log */
+  .x7 { background:#080b12; padding:54px 64px; }
+  .x7-grid { display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; }
+  .x7-left h2 { font:700 36px/1.08 'Plus Jakarta Sans'; letter-spacing:-.03em; margin:14px 0 14px; color:#fff; }
+  .x7-left .intro { font:400 15px/1.6 Roboto; color:rgba(255,255,255,.6); max-width:420px; }
+  .x7-log { margin-top:24px; border:1px solid rgba(255,255,255,.1); border-radius:14px; background:rgba(255,255,255,.03); overflow:hidden; }
+  .x7-line { display:grid; grid-template-columns:auto auto 1fr; gap:12px; align-items:baseline; padding:16px 18px; border-bottom:1px solid rgba(255,255,255,.07); }
+  .x7-line:last-child { border-bottom:none; }
+  .x7-pr { color:#F8A754; font:700 14px/1 'Schibsted Grotesk'; }
+  .x7-cmd { font:700 14px/1 'Schibsted Grotesk'; color:#fff; letter-spacing:.02em; }
+  .x7-out { font:400 13.5px/1.55 Roboto; color:rgba(255,255,255,.58); }
+  .x7 .glass .scr { height:320px; }
+
+  /* X8 · hover-reveal columns */
+  .x8 { background:#F7F8FA; padding:54px 64px; }
+  .x8-cols { display:flex; gap:16px; margin-top:32px; }
+  .x8-col { flex:1; border-radius:16px; overflow:hidden; cursor:pointer; border:1px solid rgba(16,32,58,.1); background:#fff; transition:flex .5s cubic-bezier(.2,0,0,1); }
+  .x8-col.on { flex:1.8; }
+  .x8-scr .frame { margin:14px 14px 0; }
+  .x8-scr .scr { height:240px; }
+  .x8-info { padding:16px 20px 20px; }
+  .x8-n { font:800 14px/1 'Schibsted Grotesk'; color:#F57C00; }
+  .x8-info h3 { font:700 19px/1.15 'Plus Jakarta Sans'; margin:8px 0 6px; color:#10203A; }
+  .x8-info p { font:400 13.5px/1.5 Roboto; color:rgba(16,32,58,.6); margin:0; max-height:0; overflow:hidden; opacity:0; transition:.4s; }
+  .x8-col.on .x8-info p { max-height:90px; opacity:1; }
+
+  /* X9 · magazine feature */
+  .x9 { background:#fff; padding:54px 64px; }
+  .x9-grid { display:grid; grid-template-columns:1.4fr 1fr; gap:24px; margin-top:32px; }
+  .x9-feat { background:#F7F8FA; border:1px solid rgba(16,32,58,.1); border-radius:18px; overflow:hidden; }
+  .x9-feat .frame { margin:16px 16px 0; }
+  .x9-feat .scr { height:300px; }
+  .x9-fc { display:flex; gap:16px; padding:22px 24px 26px; }
+  .x9-fc .x9-n { font:800 36px/1 'Schibsted Grotesk'; color:rgba(16,32,58,.14); }
+  .x9-fc h3 { font:700 24px/1.12 'Plus Jakarta Sans'; margin:0 0 8px; color:#10203A; }
+  .x9-fc p { font:400 15px/1.6 Roboto; color:rgba(16,32,58,.62); margin:0; }
+  .x9-side { display:flex; flex-direction:column; gap:24px; }
+  .x9-mini { display:grid; grid-template-columns:150px 1fr; gap:18px; align-items:center; border:1px solid rgba(16,32,58,.1); border-radius:14px; overflow:hidden; padding-right:18px; }
+  .x9-mini .frame { margin:0; border:none; border-radius:0; }
+  .x9-mini .scr { height:140px; }
+  .x9-mc .x9-n { font:800 14px/1 'Schibsted Grotesk'; color:#F57C00; }
+  .x9-mc h3 { font:700 18px/1.15 'Plus Jakarta Sans'; margin:6px 0 5px; color:#10203A; }
+  .x9-mc p { font:400 13px/1.5 Roboto; color:rgba(16,32,58,.6); margin:0; }
+
+  /* X10 · vertical progress rail */
+  .x10 { background:#FAFAF7; padding:54px 64px; }
+  .x10-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:50px; align-items:center; }
+  .x10-head h2 { font:700 34px/1.08 'Plus Jakarta Sans'; letter-spacing:-.03em; margin:14px 0 12px; color:#10203A; }
+  .x10-head .intro { font:400 15px/1.6 Roboto; color:rgba(16,32,58,.6); max-width:420px; }
+  .x10-step { display:flex; gap:16px; width:100%; text-align:left; background:none; border:none; border-top:1px solid rgba(16,32,58,.12); padding:18px 6px; cursor:pointer; align-items:flex-start; }
+  .x10-step:last-child { border-bottom:1px solid rgba(16,32,58,.12); }
+  .x10-n { font:800 16px/1 'Schibsted Grotesk'; color:rgba(16,32,58,.3); margin-top:2px; }
+  .x10-step.on .x10-n { color:#F57C00; }
+  .x10-t { font:700 18px/1.2 'Plus Jakarta Sans'; color:rgba(16,32,58,.55); }
+  .x10-step.on .x10-t { color:#10203A; }
+  .x10-d { font:400 13.5px/1.55 Roboto; color:rgba(16,32,58,.6); max-height:0; overflow:hidden; opacity:0; transition:.35s; }
+  .x10-step.on .x10-d { max-height:90px; opacity:1; margin-top:7px; }
+  .x10-prev .scr { height:330px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel">
+const { useState } = React;
+
+/* ===== A · Centered steps + video ===== */
+const STEPS = [
+  { n:'01', t:'Diagnose', tag:'AI Coach', tint:'#5B8FD6',
+    head:'Know exactly where you stand.',
+    d:'Charlie, your AI coach, scans your real games and surfaces the exact gaps holding your rating back.',
+    points:['Analysis across your last 100+ games','A weakness map ranked by lost rating','A calibration test pins your true level'],
+    vid:'Diagnose · AI Coach walkthrough' },
+  { n:'02', t:'Study & Practice', tag:'Courses & Puzzles', tint:'#7C8AD9',
+    head:'Train precisely what you need.',
+    d:'Grandmaster-taught courses, handpicked puzzles and quizzes that lock every concept into memory.',
+    points:['500+ hours of Grandmaster courses','Daily puzzles matched to your level','Spar in live games with titled players'],
+    vid:'Study & Practice · inside a GM course' },
+  { n:'03', t:'Fix', tag:'Adaptive Plan', tint:'#3FA6A0',
+    head:'Close every leak — for good.',
+    d:'We re-diagnose as you grow and rebuild your plan, so you’re always training what matters next.',
+    points:['BugZone tracks recurring mistakes','FixMood finds every turning point','Ask a GM about any position'],
+    vid:'Fix · turning your games around' },
+];
+
+const INTRO = "We’ve spent 8 years crafting and evolving the ChessMood method with thousands of students, and we’re confident it works.";
+
+const Header = () => (
+  <div className="mhead">
+    <div className="eyebrow">Built by Grandmasters · Enhanced by AI</div>
+    <h2>Diagnose. <span className="g">Study &amp; Practice.</span> Fix.</h2>
+    <p className="intro">{INTRO}</p>
+  </div>
+);
+
+function LeftText({ s }){
+  return (
+    <div className="mtext">
+      <div className="mtag" style={{ color:s.tint }}>{s.tag}</div>
+      <h3>{s.head}</h3>
+      <p>{s.d}</p>
+      <ul>{s.points.map((p,i)=><li key={i}><span className="ck">✓</span>{p}</li>)}</ul>
+    </div>
+  );
+}
+
+const DiagnoseUI = () => (
+  <div className="pane">
+    <div className="bd">
+      <img src="ds/chess-board.png" alt="" />
+      <div className="badge"><em></em>Analyzing 142 games</div>
+    </div>
+    <div className="pnl">
+      <div className="ph"><span className="dot"></span>Charlie · AI Coach<span className="r">Live</span></div>
+      <div className="bignum"><span className="lab">Estimated strength</span><span className="v">1642</span></div>
+      <div className="evalbar2"><b style={{left:'63%'}}></b></div>
+      <div className="wklist">
+        <div className="wk"><em className="hi"></em>Hanging pieces in the opening<s className="hi">High</s></div>
+        <div className="wk"><em className="md"></em>Rook endgame technique<s className="md">Med</s></div>
+        <div className="wk"><em className="lo"></em>Time management<s className="lo">Low</s></div>
+      </div>
+    </div>
+  </div>
+);
+
+const StudyUI = () => (
+  <div className="pane">
+    <div className="bd">
+      <img src="ds/chess-board.png" alt="" />
+      <div className="badge"><em></em>Scotch Gambit · Lesson 4</div>
+    </div>
+    <div className="pnl">
+      <div className="ph"><span className="dot"></span>Grandmaster course<span className="r">4 / 12</span></div>
+      <div className="gmrow"><img src="ds/photo-avetik.png" alt="" /><div><div className="gmn">GM Avetik Grigoryan</div><div className="gmt">Founder · 2600+ FIDE</div></div></div>
+      <div className="prog2"><b style={{width:'34%'}}></b></div>
+      <div className="lessons">
+        <div className="ls done"><span className="lk">✓</span>Key ideas &amp; pawn breaks</div>
+        <div className="ls done"><span className="lk">✓</span>Typical middlegame plans</div>
+        <div className="ls on"><span className="lk">▶</span>Handling the d5 push</div>
+      </div>
+      <div className="puz"><span>Today’s puzzles</span><b>12 solved</b></div>
+    </div>
+  </div>
+);
+
+const FixUI = () => (
+  <div className="pane">
+    <div className="bd">
+      <img src="ds/chess-board.png" alt="" />
+      <div className="badge"><em></em>FixMood · turning point</div>
+    </div>
+    <div className="pnl">
+      <div className="ph"><span className="dot"></span>Your plan · this week<span className="r">62%</span></div>
+      <div className="prog2"><b style={{width:'62%'}}></b></div>
+      <div className="lessons">
+        <div className="ls done"><span className="lk">✓</span>Caro-Kann · main line review</div>
+        <div className="ls done"><span className="lk">✓</span>20 handpicked tactics</div>
+        <div className="ls on"><span className="lk">▶</span>Rook endgames · lesson 3</div>
+      </div>
+      <div className="bug">
+        <div className="bugh">BugZone · recurring</div>
+        <div className="bugrow"><em className="hi"></em>Hanging pieces<s>3×</s></div>
+        <div className="bugrow"><em className="md"></em>Premature attacks<s>2×</s></div>
+      </div>
+    </div>
+  </div>
+);
+
+const Video = ({ s }) => {
+  const phase = parseInt(s.n, 10) - 1;
+  return (
+    <div className="stepui">
+      <div className="tb"><i></i><i></i><i></i><span className="u">chessmood.com/app</span></div>
+      {phase === 0 && <DiagnoseUI/>}
+      {phase === 1 && <StudyUI/>}
+      {phase === 2 && <FixUI/>}
+    </div>
+  );
+};
+
+/* V1 — underline tabs */
+function V1(){
+  const [a,setA] = useState(0); const s = STEPS[a];
+  return <div className="sec light v1">
+    <Header/>
+    <div className="steps">
+      {STEPS.map((p,i)=><button className={"step"+(i===a?" on":"")} key={i} onClick={()=>setA(i)}>
+        <div className="n">{p.n}</div><div className="t">{p.t}</div><span className="bar"></span>
+      </button>)}
+    </div>
+    <div className="body"><LeftText s={s}/><Video s={s}/></div>
+  </div>;
+}
+
+/* V2 — connected flow */
+function V2(){
+  const [a,setA] = useState(0); const s = STEPS[a];
+  return <div className="sec white v2">
+    <Header/>
+    <div className="steps">
+      {STEPS.map((p,i)=><React.Fragment key={i}>
+        {i>0 && <div className="link"></div>}
+        <button className={"step"+(i===a?" on":"")} onClick={()=>setA(i)}>
+          <div className="dot">{p.n}</div><div className="t">{p.t}</div>
+        </button>
+      </React.Fragment>)}
+    </div>
+    <div className="body"><LeftText s={s}/><Video s={s}/></div>
+  </div>;
+}
+
+/* V3 — dark segmented */
+function V3(){
+  const [a,setA] = useState(0); const s = STEPS[a];
+  return <div className="sec dark v3">
+    <Header/>
+    <div className="stepswrap">
+      <div className="steps">
+        {STEPS.map((p,i)=><button className={"step"+(i===a?" on":"")} key={i} onClick={()=>setA(i)}>
+          <span className="n">{p.n}</span>{p.t}
+        </button>)}
+      </div>
+    </div>
+    <div className="body"><LeftText s={s}/><Video s={s}/></div>
+  </div>;
+}
+
+/* V4 — card chips + browser frame */
+function V4(){
+  const [a,setA] = useState(0); const s = STEPS[a];
+  return <div className="sec white v4">
+    <Header/>
+    <div className="steps">
+      {STEPS.map((p,i)=><div className={"step"+(i===a?" on":"")} key={i} onClick={()=>setA(i)}>
+        <div className="k"><span>{p.n} · {p.tag}</span><span className="arr">→</span></div>
+        <div className="t">{p.t}</div>
+      </div>)}
+    </div>
+    <div className="body">
+      <LeftText s={s}/>
+      <Video s={s}/>
+    </div>
+  </div>;
+}
+
+/* V5 — editorial numbered */
+function V5(){
+  const [a,setA] = useState(0); const s = STEPS[a];
+  return <div className="sec cream v5">
+    <Header/>
+    <div className="steps">
+      {STEPS.map((p,i)=><button className={"step"+(i===a?" on":"")} key={i} onClick={()=>setA(i)}>
+        <div className="n">{p.n}</div><div className="t">{p.t}</div>
+      </button>)}
+    </div>
+    <div className="body"><LeftText s={s}/><Video s={s}/></div>
+  </div>;
+}
+
+/* ===== B · Earlier directions (live product UI) ===== */
+const PH = [
+  {t:"Diagnose", tag:"AI Coach", d:"Charlie, your AI coach, scans your real games and surfaces the exact gaps holding your rating back."},
+  {t:"Study & Practice", tag:"Courses & Puzzles", d:"Grandmaster-taught courses, handpicked puzzles and quizzes that lock every concept into memory."},
+  {t:"Fix", tag:"Adaptive Plan", d:"We re-diagnose as you grow and rebuild your plan — so you’re always training what matters next."},
+];
+const Bar = () => <div className="bar"><i></i><i></i><i></i><div className="pill"></div></div>;
+const Img = ({src,pos}) => <img className="ph" src={src} alt="" style={pos?{objectPosition:pos}:null}/>;
+
+const Coach = () => (
+  <div className="ui coach">
+    <div className="uihead"><span className="dot"></span>Charlie · AI Coach<span className="tagr">142 games</span></div>
+    <div className="evalbar"><b style={{left:'63%'}}></b></div>
+    <div className="wk"><em className="hi"></em>Hanging pieces in the opening<s className="hi">High</s></div>
+    <div className="wk"><em className="md"></em>Rook endgame technique<s className="md">Medium</s></div>
+    <div className="wk"><em className="lo"></em>Time management in the middlegame<s className="lo">Low</s></div>
+  </div>
+);
+const Plan = () => (
+  <div className="ui plan">
+    <div className="uihead"><span className="dot"></span>Your plan · this week<span className="tagr">62%</span></div>
+    <div className="prog"><b style={{width:'62%'}}></b></div>
+    <div className="task done"><span className="ck">✓</span>Caro-Kann · main line review</div>
+    <div className="task done"><span className="ck">✓</span>20 handpicked tactics</div>
+    <div className="task"><span className="ck"></span>Rook endgames · lesson 3</div>
+  </div>
+);
+const Screen = ({phase}) => phase===1 ? <Img src="ds/chess-board.png" pos="50% 50%"/> : (phase===2 ? <Plan/> : <Coach/>);
+const FrameScreen = ({phase}) => <div className="frame"><Bar/><div className="scr"><Screen phase={phase}/></div></div>;
+
+function M1(){return <div className="sec m1">
+  <div className="eyebrow">Built by Grandmasters · Enhanced by AI</div>
+  <h2>Diagnose. <span className="g">Study &amp; Practice.</span> Fix.</h2>
+  <div className="sub">One closed loop that finds your weaknesses, trains them with Grandmaster material, then checks your work — and repeats.</div>
+  <div className="cols">
+    <div className="track"></div>
+    {PH.map((p,i)=><div className="col" key={i} style={{position:'relative',zIndex:1}}>
+      <FrameScreen phase={i}/>
+      <div className="num"><span className="dot">{i+1}</span>{p.tag}</div>
+      <h3>{p.t}</h3><p>{p.d}</p>
+    </div>)}
+  </div>
+</div>;}
+
+function M2(){return <div className="sec m2">
+  <div className="left">
+    <div className="eyebrow">How the method works</div>
+    <h2>Diagnose. Study &amp; Practice. Fix.</h2>
+    {PH.map((p,i)=><div className={"step"+(i===0?" on":"")} key={i}>
+      <div className="b">{i+1}</div>
+      <div><h3>{p.t}</h3><p>{p.d}</p></div>
+    </div>)}
+  </div>
+  <div className="right"><FrameScreen phase={0}/></div>
+</div>;}
+
+function M3(){return <div className="sec m3">
+  <div className="top">
+    <div><div className="eyebrow">Built by Grandmasters · Enhanced by AI</div>
+    <h2>Diagnose. Study &amp; Practice. Fix.</h2></div>
+    <div className="sub">Everything your improvement runs on, in one connected workspace.</div>
+  </div>
+  <div className="work">
+    <div className="big"><FrameScreen phase={0}/></div>
+    <div className="side">
+      <div className="board"><Img src="ds/chess-board.png"/><div className="lab"><div className="k">Study &amp; Practice</div><div className="t">500+ hrs of GM courses &amp; puzzles</div></div></div>
+      <div className="planw"><div className="frame" style={{height:'100%'}}><Bar/><div className="scr"><Plan/></div></div></div>
+    </div>
+  </div>
+</div>;}
+
+function M4(){return <div className="sec m4">
+  <div className="eyebrow">Built by Grandmasters · Enhanced by AI</div>
+  <h2>Diagnose. Study &amp; Practice. <span className="o">Fix.</span></h2>
+  <div className="sub">Your AI coach and a team of Grandmasters, working from the same plan.</div>
+  <div className="hero"><FrameScreen phase={0}/></div>
+  <div className="chips">
+    {PH.map((p,i)=><div className="chip" key={i}><div className="k">0{i+1} · {p.tag}</div><h3>{p.t}</h3><p>{p.d}</p></div>)}
+  </div>
+</div>;}
+
+function M5(){return <div className="sec m5">
+  <div className="eyebrow">How the method works</div>
+  <h2>One loop: Diagnose, Study &amp; Practice, Fix.</h2>
+  <div className="rows">
+    {PH.map((p,i)=><div className={"row"+(i%2?" rev":"")} key={i}>
+      <div className="frame"><Bar/><div className="scr"><Screen phase={i}/></div></div>
+      <div className="body"><div className="no">0{i+1}</div><h3>{p.t}</h3><p>{p.d}</p></div>
+    </div>)}
+  </div>
+</div>;}
+
+function M6(){return <div className="sec m6">
+  <div className="eyebrow">Built by Grandmasters · Enhanced by AI</div>
+  <h2>Diagnose. Study &amp; Practice. <span className="o">Fix.</span></h2>
+  <div className="stage">
+    <div className="anno">
+      <div className="k"><span className="n">1</span>Diagnose</div>
+      <h3>{PH[0].t}</h3><p>{PH[0].d}</p>
+      <div className="connect"></div>
+      <div className="k"><span className="n">2</span>Study</div>
+      <h3>{PH[1].t}</h3><p>{PH[1].d}</p>
+    </div>
+    <div className="center"><FrameScreen phase={0}/></div>
+    <div className="anno r">
+      <div className="k"><span className="n">3</span>Fix</div>
+      <h3>{PH[2].t}</h3><p>{PH[2].d}</p>
+      <div className="connect"></div>
+      <div className="k"><span className="n">★</span>Repeat</div>
+      <h3>Always one step ahead</h3><p>The loop restarts the moment you improve.</p>
+    </div>
+  </div>
+</div>;}
+
+/* ===== C · Inspired by Stripe & Linear ===== */
+function Copy({ s, cls='copy' }){
+  return <div className={cls}>
+    <div className="tag">{s.tag}</div>
+    <h3>{s.head}</h3>
+    <p>{s.d}</p>
+    <ul>{s.points.map((p,i)=><li key={i}><span className="ck">✓</span>{p}</li>)}</ul>
+  </div>;
+}
+
+/* N1 — Linear glass console */
+function N1(){
+  const [a,setA]=useState(0); const s=STEPS[a];
+  return <div className="sec n1">
+    <div className="head">
+      <div className="eyebrow">Built by Grandmasters · Enhanced by AI</div>
+      <h2>Diagnose. <span className="g">Study &amp; Practice.</span> Fix.</h2>
+      <p className="intro">{INTRO}</p>
+    </div>
+    <div className="tabswrap"><div className="tabs">
+      {STEPS.map((p,i)=><button key={i} className={"tab"+(i===a?" on":"")} onClick={()=>setA(i)}>
+        <span className="n">{p.n}</span>{p.t}</button>)}
+    </div></div>
+    <div className="stage"><Copy s={s}/><div className="glass"><FrameScreen phase={a}/></div></div>
+  </div>;
+}
+
+/* N2 — Stripe gradient + tilted dashboard */
+function N2(){
+  const [a,setA]=useState(0); const s=STEPS[a];
+  return <div className="sec n2"><div className="inner">
+    <div className="head">
+      <div className="eyebrow">The ChessMood Method</div>
+      <h2>Diagnose. <span className="g">Study &amp; Practice.</span> Fix.</h2>
+      <p className="intro">{INTRO}</p>
+    </div>
+    <div className="steps">
+      {STEPS.map((p,i)=><button key={i} className={"pill"+(i===a?" on":"")} onClick={()=>setA(i)}>
+        <span className="n">{p.n}</span>{p.t}</button>)}
+    </div>
+    <div className="stage"><Copy s={s}/><div className="tilt"><div className="card"><FrameScreen phase={a}/></div></div></div>
+  </div></div>;
+}
+
+/* N3 — Stripe API rows */
+function N3(){
+  const [a,setA]=useState(0);
+  return <div className="sec n3">
+    <div className="grid">
+      <div className="aside">
+        <div className="eyebrow">The ChessMood Method</div>
+        <h2>One loop that keeps your training honest.</h2>
+        <p>{INTRO}</p>
+        <div className="nav">
+          {STEPS.map((p,i)=><div key={i} className={"it"+(i===a?" on":"")} onMouseEnter={()=>setA(i)}>
+            <span className="n">{p.n}</span>{p.t}</div>)}
+        </div>
+      </div>
+      <div className="panels">
+        {STEPS.map((p,i)=><div key={i} className={"panel"+(i===a?" on":"")}>
+          <div className="body"><div className="mono">{p.n} · {p.tag}</div><h3>{p.head}</h3><p>{p.d}</p></div>
+          <div className="vis"><FrameScreen phase={i}/></div>
+        </div>)}
+      </div>
+    </div>
+  </div>;
+}
+
+/* N4 — Linear bento */
+function N4(){
+  return <div className="sec n4">
+    <div className="head">
+      <div className="eyebrow">Built by Grandmasters · Enhanced by AI</div>
+      <h2>Diagnose. <span className="g">Study &amp; Practice.</span> Fix.</h2>
+      <p className="intro">{INTRO}</p>
+    </div>
+    <div className="bento">
+      <div className="tile wide">
+        <div><div className="tag">The loop</div>
+          <h3>A closed loop that compounds every week.</h3>
+          <p>Charlie diagnoses, Grandmasters teach, and we re-check your games — then it all repeats, one level up.</p>
+        </div>
+        <div className="glass"><FrameScreen phase={0}/></div>
+      </div>
+      {STEPS.map((p,i)=><div key={i} className="tile">
+        <div className="mini"><FrameScreen phase={i}/></div>
+        <div className="tag">{p.n} · {p.tag}</div>
+        <h3>{p.t}</h3><p>{p.d}</p>
+      </div>)}
+    </div>
+  </div>;
+}
+
+function AppM(){
+  const { X1,X2,X3,X4,X5,X6,X7,X8,X9,X10 } = window;
+  return <DesignCanvas>
+    <DCSection id="centered" title="The Method — centered steps + video · 5 options" subtitle="Centered title · horizontal steps (click to switch) · text 2/5 left, video 3/5 right">
+      <DCArtboard id="v1" label="01 · Underline tabs" width={1280} height={700}><V1/></DCArtboard>
+      <DCArtboard id="v2" label="02 · Connected flow" width={1280} height={720}><V2/></DCArtboard>
+      <DCArtboard id="v3" label="03 · Dark segmented" width={1280} height={700}><V3/></DCArtboard>
+      <DCArtboard id="v4" label="04 · Card chips + browser" width={1280} height={744}><V4/></DCArtboard>
+      <DCArtboard id="v5" label="05 · Editorial numbered" width={1280} height={700}><V5/></DCArtboard>
+    </DCSection>
+    <DCSection id="earlier" title="The Method — earlier directions · 6 directions" subtitle="“Diagnose. Study & Practice. Fix.” · live product UI + real board · click ⤢ to focus">
+      <DCArtboard id="m1" label="01 · Three-phase stepper" width={1280} height={652}><M1/></DCArtboard>
+      <DCArtboard id="m2" label="02 · Vertical timeline + screen" width={1280} height={720}><M2/></DCArtboard>
+      <DCArtboard id="m3" label="03 · Connected workspace" width={1280} height={690}><M3/></DCArtboard>
+      <DCArtboard id="m4" label="04 · Device-led hero" width={1280} height={772}><M4/></DCArtboard>
+      <DCArtboard id="m5" label="05 · Editorial diptych steps" width={1280} height={1060}><M5/></DCArtboard>
+      <DCArtboard id="m6" label="06 · Annotated dashboard" width={1280} height={548}><M6/></DCArtboard>
+    </DCSection>
+    <DCSection id="stripe-linear" title="The Method — inspired by Stripe & Linear · 4 directions" subtitle="Borrowed composition & polish from stripe.com / linear.app — kept in ChessMood brand">
+      <DCArtboard id="n1" label="01 · Linear glass console" width={1280} height={660}><N1/></DCArtboard>
+      <DCArtboard id="n2" label="02 · Stripe gradient + tilt" width={1280} height={720}><N2/></DCArtboard>
+      <DCArtboard id="n3" label="03 · Stripe API rows" width={1280} height={900}><N3/></DCArtboard>
+      <DCArtboard id="n4" label="04 · Linear bento grid" width={1280} height={900}><N4/></DCArtboard>
+    </DCSection>
+    <DCSection id="more" title="The Method — 10 more directions · x1–x10" subtitle="Further explorations of “Diagnose. Study & Practice. Fix.” · click ⤢ to focus any one">
+      <DCArtboard id="x1" label="01 · Sticky accordion + preview" width={1280} height={620}><X1/></DCArtboard>
+      <DCArtboard id="x2" label="02 · Filmstrip scroll-snap" width={1280} height={620}><X2/></DCArtboard>
+      <DCArtboard id="x3" label="03 · Big-type split" width={1280} height={560}><X3/></DCArtboard>
+      <DCArtboard id="x4" label="04 · Watermark zigzag" width={1280} height={1240}><X4/></DCArtboard>
+      <DCArtboard id="x5" label="05 · Orbit loop" width={1280} height={700}><X5/></DCArtboard>
+      <DCArtboard id="x6" label="06 · Metric tabs" width={1280} height={700}><X6/></DCArtboard>
+      <DCArtboard id="x7" label="07 · Console log" width={1280} height={560}><X7/></DCArtboard>
+      <DCArtboard id="x8" label="08 · Hover-reveal columns" width={1280} height={620}><X8/></DCArtboard>
+      <DCArtboard id="x9" label="09 · Magazine feature" width={1280} height={620}><X9/></DCArtboard>
+      <DCArtboard id="x10" label="10 · Vertical progress rail" width={1280} height={560}><X10/></DCArtboard>
+    </DCSection>
+  </DesignCanvas>;
+}
+Object.assign(window, { React, useState, STEPS, INTRO, PH, Bar, Img, Coach, Plan, Screen, FrameScreen, Copy, AppM });
+</script>
+<script type="text/babel" src="method-extra.jsx"></script>
+<script type="text/babel">
+const AppMRoot = window.AppM;
+ReactDOM.createRoot(document.getElementById('root')).render(<AppMRoot/>);
+</script>
+</body>
+</html>

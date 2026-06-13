@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The chess world is talking — 6 Options</title>
+<link rel="stylesheet" href="ds/colors_and_type.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+  html, body { margin:0; height:100%; background:#0b0f17; }
+  * { box-sizing:border-box; }
+  .sec { width:100%; height:100%; overflow:hidden; position:relative; font-family:'Plus Jakarta Sans', system-ui, sans-serif; }
+  .eyebrow { font:700 12px/1 'Plus Jakarta Sans'; letter-spacing:.16em; text-transform:uppercase; }
+  .orange { color:#F57C00; }
+  img.ph { display:block; width:100%; height:100%; object-fit:cover; object-position:50% 18%; }
+  .qm { font:800 40px/0.7 Georgia, serif; }
+
+  /* ===== E1 · Featured testimonial trio (light) ===== */
+  .e1 { background:#fff; color:#10203A; padding:58px 64px; }
+  .e1 { text-align:center; }
+  .e1 .eyebrow { color:#F57C00; }
+  .e1 h2 { font:700 42px/1.05 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:14px auto 6px; }
+  .e1 .sub { font:400 16px/1.5 Roboto; color:rgba(16,32,58,.6); margin-bottom:38px; }
+  .e1 .trio { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; text-align:left; }
+  .e1 .card { border:1px solid rgba(16,32,58,.1); border-radius:18px; overflow:hidden; background:#fff; box-shadow:0 1px 3px rgba(16,24,40,.05); display:flex; flex-direction:column; }
+  .e1 .card .pic { height:240px; position:relative; }
+  .e1 .card .pic .badge { position:absolute; left:14px; bottom:14px; background:rgba(8,14,24,.6); color:#fff; border:1px solid rgba(255,255,255,.2); border-radius:100px; padding:5px 11px; font:600 12px/1 Roboto; backdrop-filter:blur(6px); }
+  .e1 .card .body { padding:22px 22px 24px; }
+  .e1 .card .q { font:500 17px/1.45 'Plus Jakarta Sans'; letter-spacing:-.01em; }
+  .e1 .card .nm { font:700 16px/1.1 'Plus Jakarta Sans'; margin-top:16px; }
+  .e1 .card .hd { font:500 13px/1.3 Roboto; color:rgba(16,32,58,.55); margin-top:3px; }
+
+  /* ===== E2 · Quote wall masonry (light) ===== */
+  .e2 { background:#F7F8F9; color:#10203A; padding:54px 64px; }
+  .e2 .top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:26px; }
+  .e2 .eyebrow { color:#F57C00; }
+  .e2 h2 { font:700 40px/1.04 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:12px 0 0; max-width:560px; }
+  .e2 .cols { columns:3; column-gap:18px; }
+  .e2 .q { break-inside:avoid; background:#fff; border:1px solid rgba(16,32,58,.1); border-radius:14px; padding:20px; margin-bottom:18px; }
+  .e2 .q.dark { background:#10203A; color:#fff; border-color:transparent; }
+  .e2 .q p { font:500 16px/1.45 'Plus Jakarta Sans'; letter-spacing:-.005em; }
+  .e2 .q.dark p { color:#fff; }
+  .e2 .q .who { display:flex; align-items:center; gap:11px; margin-top:16px; }
+  .e2 .q .av { width:38px; height:38px; border-radius:50%; overflow:hidden; flex:0 0 38px; }
+  .e2 .q .nm { font:700 14px/1.1 'Plus Jakarta Sans'; }
+  .e2 .q .hd { font:500 12px/1.2 Roboto; color:rgba(16,32,58,.5); margin-top:2px; }
+  .e2 .q.dark .hd { color:rgba(255,255,255,.55); }
+
+  /* ===== E3 · Big featured quote + rail (dark) ===== */
+  .e3 { background:radial-gradient(120% 90% at 15% 0%, #16243a, #080d16 72%); color:#fff; padding:56px 64px; }
+  .e3 .eyebrow { color:#7FB0E6; }
+  .e3 h2 { font:700 38px/1.08 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:12px 0 30px; }
+  .e3 .feat { display:flex; gap:36px; align-items:stretch; }
+  .e3 .feat .pic { flex:0 0 300px; height:330px; border-radius:18px; overflow:hidden; position:relative; }
+  .e3 .feat .body { flex:1; display:flex; flex-direction:column; justify-content:center; }
+  .e3 .feat .qm { color:#F57C00; }
+  .e3 .feat .q { font:600 30px/1.32 'Plus Jakarta Sans'; letter-spacing:-.02em; margin-top:8px; }
+  .e3 .feat .nm { font:700 18px/1.1 'Plus Jakarta Sans'; margin-top:22px; }
+  .e3 .feat .hd { font:500 14px/1.3 Roboto; color:rgba(255,255,255,.6); margin-top:4px; }
+  .e3 .rail { display:flex; gap:14px; margin-top:30px; }
+  .e3 .rail .r { flex:1; display:flex; gap:12px; align-items:center; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:12px 14px; }
+  .e3 .rail .av { width:46px; height:46px; border-radius:50%; overflow:hidden; flex:0 0 46px; }
+  .e3 .rail .nm { font:700 14px/1.15 'Plus Jakarta Sans'; }
+  .e3 .rail .hd { font:500 12px/1.25 Roboto; color:rgba(255,255,255,.55); margin-top:2px; }
+
+  /* ===== E4 · Video-testimonial grid (dark) ===== */
+  .e4 { background:#080d16; color:#fff; padding:54px 64px; }
+  .e4 { text-align:center; }
+  .e4 .eyebrow { color:#F57C00; }
+  .e4 h2 { font:700 42px/1.04 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:14px auto 8px; }
+  .e4 .sub { font:400 16px/1.5 Roboto; color:rgba(255,255,255,.55); margin-bottom:34px; }
+  .e4 .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+  .e4 .v { position:relative; border-radius:16px; overflow:hidden; aspect-ratio:3/3.6; }
+  .e4 .v .grad { position:absolute; inset:0; background:linear-gradient(transparent 45%, rgba(6,11,20,.9)); }
+  .e4 .v .play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:54px; height:54px; border-radius:50%; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.5); display:grid; place-items:center; backdrop-filter:blur(5px); }
+  .e4 .v .info { position:absolute; left:16px; right:16px; bottom:15px; text-align:left; }
+  .e4 .v .nm { font:700 16px/1.1 'Plus Jakarta Sans'; }
+  .e4 .v .hd { font:500 12px/1.25 Roboto; color:rgba(255,255,255,.7); margin-top:3px; }
+
+  /* ===== E5 · Marquee faces + statement (light) ===== */
+  .e5 { background:#fff; color:#10203A; padding:56px 0; text-align:center; }
+  .e5 .eyebrow { color:#F57C00; }
+  .e5 h2 { font:700 44px/1.08 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:14px auto 6px; max-width:760px; padding:0 64px; }
+  .e5 h2 .o { color:#F57C00; }
+  .e5 .sub { font:400 16px/1.5 Roboto; color:rgba(16,32,58,.6); margin-bottom:36px; padding:0 64px; }
+  .e5 .marq { display:flex; flex-direction:column; gap:16px; overflow:hidden; }
+  .e5 .track { display:flex; gap:16px; width:max-content; }
+  .e5 .face { display:flex; align-items:center; gap:12px; background:#F7F8F9; border:1px solid rgba(16,32,58,.1); border-radius:100px; padding:8px 18px 8px 8px; flex:0 0 auto; }
+  .e5 .face .av { width:44px; height:44px; border-radius:50%; overflow:hidden; flex:0 0 44px; }
+  .e5 .face .nm { font:700 14px/1.1 'Plus Jakarta Sans'; text-align:left; }
+  .e5 .face .hd { font:500 12px/1.2 Roboto; color:rgba(16,32,58,.5); text-align:left; margin-top:2px; }
+
+  /* ===== E6 · Split editorial (dark) ===== */
+  .e6 { background:#0b1019; color:#fff; padding:56px 64px; display:flex; gap:56px; }
+  .e6 .left { width:380px; flex:0 0 380px; position:sticky; top:0; }
+  .e6 .eyebrow { color:#7FB0E6; }
+  .e6 h2 { font:700 40px/1.08 'Plus Jakarta Sans'; letter-spacing:-.025em; margin:16px 0 18px; }
+  .e6 .lede { font:400 16px/1.6 Roboto; color:rgba(255,255,255,.6); }
+  .e6 .stat { margin-top:28px; display:flex; gap:30px; }
+  .e6 .stat .n { font:800 34px/1 'Schibsted Grotesk'; color:#F8A754; }
+  .e6 .stat .l { font:500 12.5px/1.3 Roboto; color:rgba(255,255,255,.55); margin-top:5px; }
+  .e6 .right { flex:1; display:flex; flex-direction:column; gap:16px; }
+  .e6 .q { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.09); border-radius:16px; padding:24px 26px; }
+  .e6 .q p { font:500 19px/1.45 'Plus Jakarta Sans'; letter-spacing:-.01em; }
+  .e6 .q .who { display:flex; align-items:center; gap:13px; margin-top:18px; }
+  .e6 .q .av { width:44px; height:44px; border-radius:50%; overflow:hidden; flex:0 0 44px; }
+  .e6 .q .nm { font:700 15px/1.1 'Plus Jakarta Sans'; }
+  .e6 .q .hd { font:500 12.5px/1.2 Roboto; color:rgba(255,255,255,.55); margin-top:2px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel">
+// Endorsers — real chess creators/coaches; quotes are PLACEHOLDER copy to be replaced.
+const E = [
+  {n:"Eric Rosen", h:"IM · Content creator", img:"ds/creator-eric-rosen.webp", q:"Finally — a path that tells an improver exactly what to work on next."},
+  {n:"Sagar Shah", h:"IM · ChessBase India", img:"ds/creator-sagar-shah.webp", q:"The structure most self-taught players are missing, done properly."},
+  {n:"Nelson Lopez", h:"Creator · ChessVibes", img:"ds/creator-nelson-lopez.jpeg", q:"The closest thing to having a Grandmaster sitting in your corner."},
+];
+const FACES = [
+  {n:"GM Bassem Amin", h:"Egypt · 2700", img:"ds/photo-amin.jpg", q:"A genuinely serious training system."},
+  {n:"GM Nils Grandelius", h:"Sweden · 2670", img:"ds/photo-grandelius.jpg", q:"The repertoires are world-class."},
+  {n:"GM Laurent Fressinet", h:"France · 2660", img:"ds/photo-fressinet.jpg", q:"Endgame training done right."},
+  {n:"GM Elisabeth Pähtz", h:"Germany", img:"ds/photo-paehtz.jpg", q:"I’d recommend it to any ambitious player."},
+  {n:"GM Varuzhan Akobian", h:"USA · 2620", img:"ds/photo-akobian.jpg", q:"Clear, structured, and effective."},
+  {n:"GM Rafael Leitão", h:"Brazil · 2659", img:"ds/photo-leitao.jpg", q:"Practical chess, taught practically."},
+  {n:"GM Hrant Melkumyan", h:"Armenia · 2660", img:"ds/photo-melkumyan.jpg", q:"Built by people who really teach."},
+  {n:"GM Noël Studer", h:"Switzerland", img:"ds/photo-studer.jpg", q:"The study method just works."},
+];
+const Img = ({src,pos}) => <img className="ph" src={src} alt="" style={pos?{objectPosition:pos}:null}/>;
+const Play = () => <div className="play"><svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>;
+
+function E1(){return <div className="sec e1">
+  <div className="eyebrow">Endorsed by players, coaches &amp; Grandmasters</div>
+  <h2>The chess world is talking.</h2>
+  <div className="sub">Creators and titled players who know the space — and recommend the system.</div>
+  <div className="trio">
+    {E.map((p,i)=><div className="card" key={i}>
+      <div className="pic"><Img src={p.img} pos="50% 14%"/><div className="badge">{p.h}</div></div>
+      <div className="body"><div className="q">“{p.q}”</div><div className="nm">{p.n}</div><div className="hd">{p.h}</div></div>
+    </div>)}
+  </div>
+</div>;}
+
+function E2(){const all=[E[0],FACES[0],E[1],FACES[1],FACES[2],E[2],FACES[3],FACES[5],FACES[4]];
+  return <div className="sec e2">
+  <div className="top"><div><div className="eyebrow">The chess world is talking</div>
+    <h2>Endorsed by players, coaches, and Grandmasters.</h2></div></div>
+  <div className="cols">
+    {all.map((p,i)=><div className={"q"+(i%4===1?" dark":"")} key={i}>
+      <p>“{p.q}”</p>
+      <div className="who"><div className="av"><Img src={p.img}/></div><div><div className="nm">{p.n}</div><div className="hd">{p.h}</div></div></div>
+    </div>)}
+  </div>
+</div>;}
+
+function E3(){const rail=[E[1],E[2],FACES[0],FACES[2]];
+  return <div className="sec e3">
+  <div className="eyebrow">The chess world is talking</div>
+  <h2>“{E[0].q}”</h2>
+  <div className="feat">
+    <div className="pic"><Img src={E[0].img} pos="50% 12%"/></div>
+    <div className="body">
+      <div className="qm">“</div>
+      <div className="q">A structured, Grandmaster-built path I’d point any serious improver to — it removes the guesswork that stalls most players.</div>
+      <div className="nm">{E[0].n}</div><div className="hd">{E[0].h}</div>
+    </div>
+  </div>
+  <div className="rail">
+    {rail.map((p,i)=><div className="r" key={i}><div className="av"><Img src={p.img}/></div><div><div className="nm">{p.n}</div><div className="hd">{p.h}</div></div></div>)}
+  </div>
+</div>;}
+
+function E4(){const g=[E[0],E[2],FACES[0],FACES[5],E[1],FACES[2],FACES[3],FACES[6]];
+  return <div className="sec e4">
+  <div className="eyebrow">Watch their take</div>
+  <h2>The chess world is talking.</h2>
+  <div className="sub">Hear it from creators, coaches and Grandmasters — in their own words.</div>
+  <div className="grid">
+    {g.map((p,i)=><div className="v" key={i}>
+      <Img src={p.img} pos="50% 14%"/><div className="grad"></div><Play/>
+      <div className="info"><div className="nm">{p.n.replace('GM ','')}</div><div className="hd">{p.h}</div></div>
+    </div>)}
+  </div>
+</div>;}
+
+function E5(){const row1=[...E,...FACES.slice(0,4)]; const row2=[...FACES.slice(2),E[0]];
+  const Face=(p,i)=><div className="face" key={i}><div className="av"><Img src={p.img}/></div><div><div className="nm">{p.n.replace('GM ','')}</div><div className="hd">{p.h}</div></div></div>;
+  return <div className="sec e5">
+  <div className="eyebrow">Endorsed across the chess world</div>
+  <h2>Players, coaches and creators are <span className="o">talking about ChessMood.</span></h2>
+  <div className="sub">Hundreds of titled players and the creators who shape chess online.</div>
+  <div className="marq">
+    <div className="track">{row1.map(Face)}{row1.map(Face)}</div>
+    <div className="track" style={{marginLeft:-80}}>{row2.map(Face)}{row2.map(Face)}</div>
+  </div>
+</div>;}
+
+function E6(){const qs=[E[0],E[1],FACES[0],E[2]];
+  return <div className="sec e6">
+  <div className="left">
+    <div className="eyebrow">The chess world is talking</div>
+    <h2>Endorsed by the people who know chess best.</h2>
+    <div className="lede">Titled players, respected coaches, and the creators shaping how the world learns chess.</div>
+    <div className="stat"><div><div className="n">40+</div><div className="l">Titled endorsers</div></div><div><div className="n">4.9★</div><div className="l">4,600 reviews</div></div></div>
+  </div>
+  <div className="right">
+    {qs.map((p,i)=><div className="q" key={i}>
+      <p>“{p.q}”</p>
+      <div className="who"><div className="av"><Img src={p.img}/></div><div><div className="nm">{p.n}</div><div className="hd">{p.h}</div></div></div>
+    </div>)}
+  </div>
+</div>;}
+
+function AppE(){return <DesignCanvas>
+  <DCSection id="endorse" title="The chess world is talking — 6 directions" subtitle="Photo-first endorsements · real creators & players · quotes are placeholder · click ⤢ to focus">
+    <DCArtboard id="e1" label="01 · Featured testimonial trio" width={1280} height={620}><E1/></DCArtboard>
+    <DCArtboard id="e2" label="02 · Quote wall masonry" width={1280} height={660}><E2/></DCArtboard>
+    <DCArtboard id="e3" label="03 · Featured quote + rail" width={1280} height={720}><E3/></DCArtboard>
+    <DCArtboard id="e4" label="04 · Video-testimonial grid" width={1280} height={888}><E4/></DCArtboard>
+    <DCArtboard id="e5" label="05 · Marquee of faces" width={1280} height={412}><E5/></DCArtboard>
+    <DCArtboard id="e6" label="06 · Split editorial" width={1280} height={800}><E6/></DCArtboard>
+  </DCSection>
+</DesignCanvas>;}
+ReactDOM.createRoot(document.getElementById('root')).render(<AppE/>);
+</script>
+</body>
+</html>

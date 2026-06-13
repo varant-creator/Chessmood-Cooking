@@ -1,0 +1,191 @@
+/* ChessMood Design System — Colors & Type
+   Tokens distilled from the Figma design tokens (uploads/) and codebase (Chess-Mood/website).
+   Brand: confident, minimal. Orange used sparingly for high-signal moments. */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* ---------- BRAND ---------- */
+  --cm-orange:        #F57C00;   /* Primary brand orange — CTAs, active states, accents */
+  --cm-orange-700:    #DF7100;   /* Pressed */
+  --cm-orange-600:    #DF7100;
+  --cm-orange-500:    #F57C00;
+  --cm-orange-400:    #F79633;
+  --cm-orange-300:    #F8A754;   /* Disabled fill / hover border */
+  --cm-orange-200:    #FFCA82;
+  --cm-orange-100:    #FCD6B0;   /* Secondary hover bg */
+  --cm-orange-50:     #FEF2E6;   /* Secondary bg / subtle highlights */
+  --cm-warning-500:   #FF9900;   /* Badge text, notification accents */
+  --cm-warning-50:    #FFF4E4;   /* Badge bg */
+
+  /* ---------- NEUTRALS (Foundation) ---------- */
+  --cm-white:         #FFFFFF;
+  --cm-neutral-30:    #F7F8F9;
+  --cm-neutral-50:    #F0F1F2;
+  --cm-neutral-100:   #D0D2D5;
+  --cm-neutral-200:   #BABDC1;
+  --cm-neutral-300:   #9A9FA5;   /* dividers, disabled text */
+  --cm-neutral-400:   #868C93;   /* placeholder, helper, secondary text */
+  --cm-neutral-500:   #686F78;   /* labels, body secondary */
+  --cm-neutral-600:   #5F656D;
+  --cm-neutral-700:   #4B525B;   /* body strong */
+  --cm-neutral-800:   #393D42;
+  --cm-neutral-900:   #2C2F32;   /* primary text */
+  --cm-antracite-500: #1C2838;   /* Scrolled header bg */
+  --cm-antracite-600: #192433;
+  --cm-antracite-800: #0F161F;   /* Deepest dark bg */
+
+  /* alt scale used in some components */
+  --cm-tw-neutral-50:  #FAFAFA;
+  --cm-tw-neutral-200: #E5E5E5;   /* divider */
+  --cm-tw-neutral-400: #A3A3A3;
+  --cm-tw-neutral-500: #737373;
+  --cm-tw-neutral-900: #171717;   /* near-black */
+
+  /* ---------- SUPPORT COLORS ---------- */
+  --cm-blue-50:   #E7EFF3;
+  --cm-blue-100:  #B4CDD9;
+  --cm-blue-300:  #5D93AE;
+  --cm-blue-500:  #0D5E86;
+  --cm-blue-700:  #09435F;
+  --cm-blue-900:  #052738;
+
+  --cm-cadet-300: #8CAEBD;        /* Input focus border */
+  --cm-cadet-500: #53869D;        /* Cursor */
+  --cm-focus-ring: #CAE4E4;
+
+  --cm-destructive-300: #FA8B8B;
+  --cm-destructive-500: #F00000;
+  --cm-destructive-focus-ring: #FEE6E6;
+
+  --cm-aicoach-blue: #4B9BBF;     /* AI Coach accent */
+
+  /* ---------- SEMANTIC ---------- */
+  --cm-bg:             var(--cm-white);
+  --cm-bg-subtle:      var(--cm-neutral-30);
+  --cm-bg-muted:       var(--cm-neutral-50);
+  --cm-bg-inverse:     var(--cm-antracite-500);
+
+  --cm-fg:             var(--cm-neutral-900);
+  --cm-fg-strong:      var(--cm-tw-neutral-900);
+  --cm-fg-muted:       var(--cm-neutral-500);
+  --cm-fg-subtle:      var(--cm-neutral-400);
+  --cm-fg-disabled:    var(--cm-neutral-300);
+  --cm-fg-on-dark:     var(--cm-white);
+  --cm-fg-accent:      var(--cm-orange);
+
+  --cm-border:         var(--cm-neutral-200);
+  --cm-border-subtle:  var(--cm-neutral-100);
+  --cm-border-strong:  var(--cm-neutral-300);
+  --cm-divider:        var(--cm-tw-neutral-200);
+
+  --cm-link:           var(--cm-orange);
+
+  /* ---------- ELEVATION ---------- */
+  --cm-shadow-xs:    0 1px 2px 0 rgba(16, 24, 40, 0.10);
+  --cm-shadow-sm:    0 1px 2px -1px rgba(16, 24, 40, 0.10), 0 1px 3px 0 rgba(16, 24, 40, 0.10);
+  --cm-shadow-md:    0 4px 8px -2px rgba(16, 24, 40, 0.10), 0 2px 4px -2px rgba(16, 24, 40, 0.06);
+  --cm-shadow-lg:    0 12px 24px -8px rgba(16, 24, 40, 0.12), 0 4px 8px -2px rgba(16, 24, 40, 0.08);
+  --cm-shadow-avatar: 0 1px 3px rgba(16, 24, 40, 0.15), 0 1px 2px rgba(16, 24, 40, 0.15);
+  --cm-focus-shadow: 0 0 0 3px var(--cm-focus-ring);
+  --cm-focus-shadow-error: 0 0 0 4px var(--cm-destructive-focus-ring);
+
+  /* ---------- RADII ---------- */
+  --cm-radius-none: 0;
+  --cm-radius-sm:   4px;          /* Buttons, inputs, pill tabs */
+  --cm-radius-md:   6px;          /* Gradient buttons */
+  --cm-radius-lg:   8px;          /* Cards */
+  --cm-radius-xl:   12px;
+  --cm-radius-pill: 100px;
+  --cm-radius-full: 9999px;
+
+  /* ---------- SPACING (4-pt) ---------- */
+  --cm-space-0: 0;
+  --cm-space-1: 2px;
+  --cm-space-2: 4px;
+  --cm-space-3: 6px;
+  --cm-space-4: 8px;
+  --cm-space-5: 12px;
+  --cm-space-6: 16px;
+  --cm-space-7: 20px;
+  --cm-space-8: 24px;
+  --cm-space-9: 32px;
+  --cm-space-10: 40px;
+  --cm-space-11: 48px;
+  --cm-space-12: 64px;
+  --cm-space-13: 80px;
+  --cm-space-14: 96px;
+  --cm-space-15: 128px;
+
+  /* ---------- TYPE FAMILIES ---------- */
+  --cm-font-sans:    'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --cm-font-ui:      'Inter', 'Roboto', system-ui, -apple-system, sans-serif;
+  --cm-font-blog:    'Segoe UI', 'Roboto', system-ui, sans-serif;
+  --cm-font-mono:    ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* ---------- TYPE SCALE (size / line-height / tracking) ---------- */
+  /* Display */
+  --cm-display-l-size: 52px;   --cm-display-l-lh: 56px;   --cm-display-l-tracking: -0.02em;
+  --cm-display-s-size: 44px;   --cm-display-s-lh: 48px;   --cm-display-s-tracking: -0.02em;
+  /* Headings */
+  --cm-h1-size: 36px;  --cm-h1-lh: 44px;  --cm-h1-tracking: -0.02em;
+  --cm-h2-size: 32px;  --cm-h2-lh: 40px;  --cm-h2-tracking: -0.02em;
+  --cm-h3-size: 28px;  --cm-h3-lh: 36px;  --cm-h3-tracking: -0.02em;
+  --cm-h4-size: 24px;  --cm-h4-lh: 32px;  --cm-h4-tracking: 0;
+  --cm-h5-size: 20px;  --cm-h5-lh: 28px;  --cm-h5-tracking: 0;
+  --cm-h6-size: 18px;  --cm-h6-lh: 24px;  --cm-h6-tracking: 0;
+  --cm-h7-size: 16px;  --cm-h7-lh: 22px;  --cm-h7-tracking: 0;
+  /* Paragraph */
+  --cm-p-l-size: 18px;   --cm-p-l-lh: 28px;
+  --cm-p-m-size: 16px;   --cm-p-m-lh: 24px;
+  --cm-p-s-size: 14px;   --cm-p-s-lh: 20px;
+  --cm-p-xs-size: 12px;  --cm-p-xs-lh: 18px;
+  /* Overline (uppercase tracking) */
+  --cm-overline-l-size: 14px;  --cm-overline-l-lh: 20px; --cm-overline-tracking: 0.01em;
+  --cm-overline-s-size: 12px;  --cm-overline-s-lh: 20px;
+}
+
+/* ---------- BASE ---------- */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body {
+  font-family: var(--cm-font-sans);
+  font-size: var(--cm-p-m-size);
+  line-height: var(--cm-p-m-lh);
+  color: var(--cm-fg);
+  background: var(--cm-bg);
+}
+
+/* ---------- HEADINGS (semantic, opinionated defaults) ---------- */
+h1, .cm-h1 { font: 700 var(--cm-h1-size)/var(--cm-h1-lh) var(--cm-font-sans); letter-spacing: var(--cm-h1-tracking); color: var(--cm-fg); margin: 0; }
+h2, .cm-h2 { font: 700 var(--cm-h2-size)/var(--cm-h2-lh) var(--cm-font-sans); letter-spacing: var(--cm-h2-tracking); color: var(--cm-fg); margin: 0; }
+h3, .cm-h3 { font: 600 var(--cm-h3-size)/var(--cm-h3-lh) var(--cm-font-sans); letter-spacing: var(--cm-h3-tracking); color: var(--cm-fg); margin: 0; }
+h4, .cm-h4 { font: 600 var(--cm-h4-size)/var(--cm-h4-lh) var(--cm-font-sans); color: var(--cm-fg); margin: 0; }
+h5, .cm-h5 { font: 600 var(--cm-h5-size)/var(--cm-h5-lh) var(--cm-font-sans); color: var(--cm-fg); margin: 0; }
+h6, .cm-h6 { font: 600 var(--cm-h6-size)/var(--cm-h6-lh) var(--cm-font-sans); color: var(--cm-fg); margin: 0; }
+.cm-h7   { font: 600 var(--cm-h7-size)/var(--cm-h7-lh) var(--cm-font-sans); color: var(--cm-fg); margin: 0; }
+
+.cm-display-l { font: 700 var(--cm-display-l-size)/var(--cm-display-l-lh) var(--cm-font-sans); letter-spacing: var(--cm-display-l-tracking); color: var(--cm-fg); margin: 0; }
+.cm-display-s { font: 700 var(--cm-display-s-size)/var(--cm-display-s-lh) var(--cm-font-sans); letter-spacing: var(--cm-display-s-tracking); color: var(--cm-fg); margin: 0; }
+
+/* Special Inter heading (page headers) */
+.cm-page-header { font: 800 var(--cm-h1-size)/var(--cm-h1-lh) var(--cm-font-ui); letter-spacing: -0.02em; color: var(--cm-fg); margin: 0; }
+
+/* ---------- PARAGRAPH UTILITIES ---------- */
+p, .cm-p { font: 400 var(--cm-p-m-size)/var(--cm-p-m-lh) var(--cm-font-sans); color: var(--cm-fg); margin: 0; }
+.cm-p-lg { font: 400 var(--cm-p-l-size)/var(--cm-p-l-lh) var(--cm-font-sans); }
+.cm-p-md { font: 400 var(--cm-p-m-size)/var(--cm-p-m-lh) var(--cm-font-sans); }
+.cm-p-sm { font: 400 var(--cm-p-s-size)/var(--cm-p-s-lh) var(--cm-font-sans); }
+.cm-p-xs { font: 400 var(--cm-p-xs-size)/var(--cm-p-xs-lh) var(--cm-font-sans); }
+
+.cm-overline-lg { font: 600 var(--cm-overline-l-size)/var(--cm-overline-l-lh) var(--cm-font-sans); letter-spacing: var(--cm-overline-tracking); text-transform: uppercase; }
+.cm-overline-sm { font: 600 var(--cm-overline-s-size)/var(--cm-overline-s-lh) var(--cm-font-sans); letter-spacing: var(--cm-overline-tracking); text-transform: uppercase; }
+
+/* Blog uses Segoe UI */
+.cm-blog-p { font: 400 var(--cm-p-l-size)/var(--cm-p-l-lh) var(--cm-font-blog); color: var(--cm-fg); }
+
+/* Links */
+a, .cm-link { color: var(--cm-link); text-decoration: none; }
+a:hover, .cm-link:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+/* Code */
+code, .cm-code { font-family: var(--cm-font-mono); font-size: 0.9em; background: var(--cm-bg-muted); padding: 0.1em 0.35em; border-radius: 4px; }

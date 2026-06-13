@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ChessMood — Final</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="ds/colors_and_type.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=Albert+Sans:wght@400;500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700;800;900&display=swap">
+<style>
+  html, body { margin:0; height:100%; background:#070C16; }
+  body { font-family: Roboto, system-ui, sans-serif; color:#2C2F32; }
+  * { box-sizing: border-box; }
+  :root {
+    --cm-glow: 44 83 160; --cm-glow-i: 1;
+    --cm-text: #FFFFFF;
+    --cm-mut: rgba(255,255,255,0.66);
+    --cm-mut2: rgba(255,255,255,0.46);
+    --cm-line: rgba(255,255,255,0.10);
+    --cm-lineSoft: rgba(255,255,255,0.06);
+    --cm-glass: rgba(255,255,255,0.05);
+    --cm-glassHi: rgba(255,255,255,0.08);
+    --cm-bg1: #070C16; --cm-bg2: #0A1326;
+  }
+  .cm-logo-light { display:none; }
+  [data-cm-theme="light"] .cm-logo-light { display:inline-block; }
+  [data-cm-theme="light"] .cm-logo-dark { display:none; }
+
+  @keyframes cmRing { 0% { transform: scale(1); opacity:.7; } 100% { transform: scale(1.7); opacity:0; } }
+  .cm-ring { animation: cmRing 2.6s cubic-bezier(.2,0,0,1) infinite; }
+  @keyframes cmBlink { 0%,100% { opacity:1; } 50% { opacity:.35; } }
+
+  /* --- GM section motion (calm, on-brand; degrades w/ reduced motion) --- */
+  @keyframes gmRise { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform:none; } }
+  @keyframes gmBreathe { 0%,100% { opacity:.82; } 50% { opacity:1; } }
+  @keyframes gmMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes gmMarqueeRev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  @keyframes gmMarqueeY { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+  @keyframes gmMarqueeYRev { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+  @keyframes gmFaceIn { from { opacity:0; transform: translateX(34px) scale(.965); } to { opacity:1; transform:none; } }
+  @keyframes gmMetaIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform:none; } }
+  @keyframes gmWipe { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @media (prefers-reduced-motion: no-preference) {
+    .gm-rise { opacity:0; animation: gmRise .6s cubic-bezier(.2,0,0,1) both; }
+    .gm-breathe { animation: gmBreathe 12s ease-in-out infinite; }
+    .gm-marquee-track { animation: gmMarquee 120s linear infinite; }
+    .gm-marquee-track.gm-marquee-rev { animation: gmMarqueeRev 120s linear infinite; }
+    .gm-marquee:hover .gm-marquee-track { animation-play-state: paused; }
+    .gm-vrail { animation: gmMarqueeY 108s linear infinite; }
+    .gm-vrail.gm-vrail-rev { animation: gmMarqueeYRev 108s linear infinite; }
+    .gm-vwall:hover .gm-vrail { animation-play-state: paused; }
+    .gm-face-in { animation: gmFaceIn .5s cubic-bezier(.2,0,0,1) both; }
+    .gm-meta-in { animation: gmMetaIn .45s ease both; }
+    .gm-wipe { animation: gmWipe linear both; }
+  }
+  @keyframes gmOrbit { to { stroke-dashoffset: -200; } }
+  @keyframes gmFade { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform:none; } }
+  @keyframes gmFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+  @keyframes gmClick { 0% { transform: scale(0.4); opacity:0.9; } 100% { transform: scale(1.5); opacity:0; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .gm-orbit { stroke-dasharray: 3 5; animation: gmOrbit 9s linear infinite; }
+    .gm-fade { animation: gmFade .32s cubic-bezier(.2,0,0,1) both; }
+    .gm-float { animation: gmFloat 6s ease-in-out infinite; }
+    .gm-click { animation: gmClick .55s ease-out; }
+  }
+  .gm-nav { transition: background .14s ease, border-color .14s ease; }
+  .gm-nav:hover { background: var(--cm-navbg-h, rgba(255,255,255,0.14)) !important; }
+
+  /* Final intro-video play button (MasterClass-style ring) */
+  .cm-vid:hover .cm-play-disc { background: rgba(255,255,255,0.26) !important; border-color: #fff !important; }
+  .cm-vid .cm-pulse { opacity: 0; }
+  .cm-vid:hover .cm-pulse { opacity: 1; }
+  .cm-vid-hover .cm-play-reveal { opacity: 0; transition: opacity .22s cubic-bezier(.2,0,0,1); }
+  .cm-vid-hover:hover .cm-play-reveal { opacity: 1; }
+  @media (prefers-reduced-motion: no-preference) {
+    .cm-vid:hover .cm-pulse { animation: cmRing 2.6s cubic-bezier(.2,0,0,1) infinite; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" rx="20" fill="#070C16"/>
+    <text x="50" y="64" font-family="Inter, sans-serif" font-size="34" font-weight="800" text-anchor="middle" fill="#F57C00">Ch</text>
+  </svg>
+</template>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="shared.jsx"></script>
+<script type="text/babel" src="hero-premium.jsx"></script>
+<script type="text/babel" src="gm-section.jsx"></script>
+<script type="text/babel" src="product-screens.jsx"></script>
+<script type="text/babel" src="product-section.jsx"></script>
+<script type="text/babel" src="stories-section.jsx"></script>
+
+<script type="text/babel">
+// Curated final build — the strongest variant for each section, assembled as a
+// clean, shareable page. (Mirrors the "★ Final" artboard in the explorations.)
+const T_FINAL = {
+  glow: "#2C53A0", glowIntensity: 0.5,
+  headFont: "Plus Jakarta Sans", headWeight: "700", headSize: 46, headLines: "two", headEmphasis: "bold",
+  heroTheme: "dark", gmTheme: "light", productTheme: "light", storiesTheme: "light",
+  gmFounderAccent: "#5B8FD6",
+  heroHeadline: "The structured system for chess improvement, crafted by Grandmasters.",
+  gmHeading: "The Grandmasters you will meet in the ChessMood system.",
+  tagColor: "#F57C00", tagStyle: "glass",
+  wallTake: "ghost", storyCta: "solid",
+  finalPlayPos: "center", finalPlayReveal: "hover", finalGmCount: 3,
+};
+
+function sectionVars(theme, triple, glowI) {
+  const light = theme === 'light';
+  const v = light ? {
+    '--cm-text':'#10203A','--cm-mut':'rgba(16,32,58,0.64)','--cm-mut2':'rgba(16,32,58,0.46)',
+    '--cm-line':'rgba(16,32,58,0.12)','--cm-lineSoft':'rgba(16,32,58,0.06)',
+    '--cm-glass':'rgba(16,32,58,0.04)','--cm-glassHi':'rgba(16,32,58,0.09)',
+    '--cm-bg1':'#FFFFFF','--cm-bg2':'#EEF3FA',
+    '--cm-navbg':'rgba(255,255,255,0.82)','--cm-navbg-h':'rgba(255,255,255,0.98)','--cm-navfg':'#10203A','--cm-navborder':'rgba(16,32,58,0.16)'
+  } : {
+    '--cm-text':'#FFFFFF','--cm-mut':'rgba(255,255,255,0.66)','--cm-mut2':'rgba(255,255,255,0.46)',
+    '--cm-line':'rgba(255,255,255,0.10)','--cm-lineSoft':'rgba(255,255,255,0.06)',
+    '--cm-glass':'rgba(255,255,255,0.05)','--cm-glassHi':'rgba(255,255,255,0.08)',
+    '--cm-bg1':'#070C16','--cm-bg2':'#0A1326',
+    '--cm-navbg':'rgba(8,12,22,0.62)','--cm-navbg-h':'rgba(255,255,255,0.18)','--cm-navfg':'#FFFFFF','--cm-navborder':'rgba(255,255,255,0.16)'
+  };
+  return Object.assign({}, v, { '--cm-glow': triple, '--cm-glow-i': String(glowI * (light ? 0.5 : 1)) });
+}
+
+function FinalApp() {
+  const t = T_FINAL;
+  const triple = React.useMemo(() => {
+    const h = (t.glow || '#2C53A0').replace('#','');
+    const n = parseInt(h.length===3 ? h.split('').map(c=>c+c).join('') : h, 16);
+    return `${(n>>16)&255} ${(n>>8)&255} ${n&255}`;
+  }, []);
+  React.useEffect(() => {
+    const r = document.documentElement.style;
+    r.setProperty('--cm-glow', triple);
+    r.setProperty('--cm-glow-i', String(t.glowIntensity));
+    // achievement-tag (badge) tokens
+    const hexToRgb = (h) => { h=(h||'#2C53A0').replace('#',''); if(h.length===3) h=h.split('').map(c=>c+c).join(''); const n=parseInt(h,16); return [(n>>16)&255,(n>>8)&255,n&255]; };
+    const mix = (c, target, f) => c.map((v,i)=>Math.round(v + (target[i]-v)*f));
+    const rgb = (a) => `rgb(${a[0]}, ${a[1]}, ${a[2]})`;
+    const rgba = (a, al) => `rgba(${a[0]}, ${a[1]}, ${a[2]}, ${al})`;
+    const a = hexToRgb(t.tagColor);
+    const lightAccent = mix(a, [255,255,255], 0.62);
+    const darkAccent = mix(a, [0,0,0], 0.30);
+    const style = t.tagStyle || 'glass';
+    let bg, fg, bd;
+    if (style === 'solid') { bg = rgb(a); fg = '#fff'; bd = 'rgba(255,255,255,0.30)'; }
+    else if (style === 'tint') { bg = rgba(a, 0.20); fg = rgb(lightAccent); bd = rgba(a, 0.5); }
+    else if (style === 'gradient') { bg = `linear-gradient(135deg, ${rgb(mix(a,[255,255,255],0.16))} 0%, ${rgb(darkAccent)} 100%)`; fg = '#fff'; bd = 'rgba(255,255,255,0.28)'; }
+    else if (style === 'outline') { bg = 'rgba(8,12,22,0.34)'; fg = rgb(lightAccent); bd = rgb(a); }
+    else { bg = rgba(a, 0.22); fg = '#fff'; bd = 'rgba(255,255,255,0.32)'; }
+    r.setProperty('--cm-badge-bg', bg);
+    r.setProperty('--cm-badge-fg', fg);
+    r.setProperty('--cm-badge-bd', bd);
+  }, [triple]);
+
+  const heroVars = sectionVars(t.heroTheme, triple, t.glowIntensity);
+  const gmVars = sectionVars(t.gmTheme, triple, t.glowIntensity);
+  const mkMethod = (theme) => {
+    const base = { ...sectionVars(theme, triple, t.glowIntensity) };
+    if (theme === 'light') { base['--cm-bg1'] = '#F1F4F8'; base['--cm-bg2'] = '#FBFCFE'; }
+    return base;
+  };
+  const productVars = mkMethod(t.productTheme);
+  const storiesVars = mkMethod(t.storiesTheme);
+  const head = { headFont:t.headFont, headWeight:t.headWeight, headSize:t.headSize, headLines:t.headLines, headEmphasis:t.headEmphasis, headText:t.heroHeadline };
+
+  // Responsive scaler — fit the 1440-wide design to the viewport width so the
+  // shared page fills the browser like a real site.
+  const innerRef = React.useRef(null);
+  const [box, setBox] = React.useState({ scale: 1, h: 0 });
+  React.useLayoutEffect(() => {
+    let raf = 0;
+    const fit = () => {
+      const s = window.innerWidth / 1440;
+      const ih = innerRef.current ? innerRef.current.offsetHeight : 0;
+      setBox(prev => (Math.abs(prev.scale - s) < 0.0005 && Math.abs(prev.h - ih * s) < 0.5) ? prev : { scale: s, h: ih * s });
+    };
+    const schedule = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(fit); };
+    fit();
+    let ro;
+    if ('ResizeObserver' in window && innerRef.current) { ro = new ResizeObserver(schedule); ro.observe(innerRef.current); }
+    window.addEventListener('resize', schedule);
+    const tA = setTimeout(fit, 400), tB = setTimeout(fit, 1200);
+    return () => { window.removeEventListener('resize', schedule); if (ro) ro.disconnect(); cancelAnimationFrame(raf); clearTimeout(tA); clearTimeout(tB); };
+  }, []);
+
+  return (
+    <div style={{ width:'100%', height: box.h || '100vh', overflow:'hidden', background:'#070C16' }}>
+      <div ref={innerRef} style={{ width:1440, transformOrigin:'top left', transform:`scale(${box.scale})` }}>
+        <div style={heroVars} data-cm-theme={t.heroTheme}><HeroStudioTrust head={head} poster="ds/hero-intro.png" cinematic playPos={t.finalPlayPos} playReveal={t.finalPlayReveal} /></div>
+        <div style={gmVars} data-cm-theme={t.gmTheme}><GMSpotlightRow head={head} heading={t.gmHeading} accent={t.gmFounderAccent} bigCount={t.finalGmCount} bigW={t.finalGmCount===3?246:300} ratingPlace="above" countryMode="full" countrySide="right" fideColor="#FFFFFF" gmColor={['#FFCC00','#FF7700']} /></div>
+        <div style={productVars} data-cm-theme={t.productTheme}><ProductObservatory head={head} theme={t.productTheme}/></div>
+        <div style={storiesVars} data-cm-theme={t.storiesTheme}><StudentsWall head={head} take={t.wallTake} cta={t.storyCta}/></div>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<FinalApp/>);
+</script>
+</body>
+</html>
